@@ -1,0 +1,238 @@
+<!doctype html>
+<!-- Copyright 2026 - 2026 The MathWorks, Inc. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MATLAB® AI Tutor Session Report</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      color: #1f2933;
+      max-width: 980px;
+      margin: 32px auto;
+      padding: 0 24px;
+      background: #ffffff;
+    }
+    header {
+      border-bottom: 3px solid #0076a8;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+    }
+    h1, h2, h3 {
+      color: #1b4f72;
+      line-height: 1.2;
+    }
+    .meta {
+      color: #4b5563;
+      margin: 4px 0;
+    }
+    .notice {
+      background: #eef6fb;
+      border-left: 4px solid #0076a8;
+      padding: 12px 14px;
+      margin: 16px 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 12px 0 20px;
+    }
+    th, td {
+      border: 1px solid #d7dde3;
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+    th {
+      background: #f3f6f8;
+      text-align: left;
+    }
+    .metric {
+      text-align: right;
+      white-space: nowrap;
+    }
+    code {
+      background: #f4f4f5;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+    footer {
+      border-top: 1px solid #d7dde3;
+      color: #5b6470;
+      font-size: 0.9em;
+      margin-top: 32px;
+      padding-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MATLAB® AI Tutor Session Report</h1>
+    <p class="meta"><strong>Session datetime:</strong> 2026-06-02 16:56:32</p>
+    <p class="meta"><strong>Learner goal:</strong> Practice MATLAB table indexing, element-wise operations, and debugging workflow.</p>
+    <p class="meta"><strong>Session focus:</strong> Array shape, element-wise operators, table variable extraction, and evidence-based debugging.</p>
+    <p class="meta"><strong>Practice modes used:</strong> MCQ, hands-on script, debugging.</p>
+    <p class="meta"><strong>Evidence basis:</strong> Example report based on a fictional tutoring session.</p>
+  </header>
+
+  <section class="notice">
+    This report summarizes the observed tutoring session. It is not a formal
+    grade. Metrics reflect only activities completed in the session.
+  </section>
+
+  <section>
+    <h2>Executive Summary</h2>
+    <p>
+      The session focused on predicting MATLAB output, distinguishing matrix
+      operations from element-wise operations, and choosing the correct table
+      indexing form for later numeric calculations. The learner showed progress
+      when they began checking <code>size</code> and <code>class</code> before
+      editing code. The strongest observed behavior was using MATLAB evidence to
+      explain why a result changed after revision. The main growth area is
+      predicting output type and shape before running table and vector
+      operations. Recommended next step: complete one short table-indexing script
+      assessment that checks class, size, and numeric output.
+    </p>
+  </section>
+
+  <section>
+    <h2>Topics Covered</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Topic</th>
+          <th>Evidence Observed</th>
+          <th>Strengths</th>
+          <th>Growth Areas</th>
+          <th>Next Step</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Element-wise operations</td>
+          <td>Learner revised <code>x^2</code> to <code>x.^2</code> after comparing expected and actual output.</td>
+          <td>Recognized that vector inputs require element-wise operators for element-by-element calculations.</td>
+          <td>Needs more practice predicting the size of the result before execution.</td>
+          <td>Trace three examples using row vectors, column vectors, and matrices.</td>
+        </tr>
+        <tr>
+          <td>Array shape</td>
+          <td>Learner checked <code>size(x)</code> and <code>size(y)</code> during a debugging task.</td>
+          <td>Used MATLAB evidence rather than guessing from the code alone.</td>
+          <td>Still needs practice recognizing when implicit expansion creates a matrix.</td>
+          <td>Predict <code>size(z)</code> before running each vector operation.</td>
+        </tr>
+        <tr>
+          <td>Table indexing</td>
+          <td>Learner compared <code>T.Value</code>, <code>T(:, "Value")</code>, and <code>T{:, "Value"}</code>.</td>
+          <td>Identified that table output and numeric array output are different.</td>
+          <td>Needs more fluency choosing the indexing form that matches the next calculation.</td>
+          <td>Complete a table extraction drill with output class checks.</td>
+        </tr>
+        <tr>
+          <td>Debugging workflow</td>
+          <td>Learner identified the failing line and inspected variable size before applying a fix.</td>
+          <td>Moved toward an evidence-first debugging process.</td>
+          <td>Should state the expected result before editing code.</td>
+          <td>Use the sequence: expected result, actual result, evidence, hypothesis, repair.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Activity Metrics</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Activity Type</th>
+          <th>Attempted</th>
+          <th>Passed/Correct</th>
+          <th>Revised</th>
+          <th>Unresolved</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>MCQs</td>
+          <td class="metric">4</td>
+          <td class="metric">3</td>
+          <td class="metric">N/A</td>
+          <td class="metric">1</td>
+          <td>Missed one question about table indexing output type.</td>
+        </tr>
+        <tr>
+          <td>Hands-on scripts</td>
+          <td class="metric">2</td>
+          <td class="metric">2</td>
+          <td class="metric">1</td>
+          <td class="metric">0</td>
+          <td>One script passed after replacing <code>*</code> with <code>.*</code>.</td>
+        </tr>
+        <tr>
+          <td>Debugging tasks</td>
+          <td class="metric">1</td>
+          <td class="metric">1</td>
+          <td class="metric">1</td>
+          <td class="metric">0</td>
+          <td>Root cause identified as matrix/operator mismatch.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>MATLAB® Evidence</h2>
+    <ul>
+      <li><code>check_matlab_code</code>: no Code Analyzer issues reported for the final hands-on script.</li>
+      <li><code>run_matlab_file</code>: final script executed successfully.</li>
+      <li>Output check: <code>result</code> matched expected class <code>double</code>, size <code>[1 4]</code>, and value <code>[1 4 9 16]</code>.</li>
+      <li>Debugging evidence used: <code>size(x)</code>, <code>size(y)</code>, and the matrix dimension error message.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Strengths</h2>
+    <ul>
+      <li>The learner used MATLAB evidence, especially <code>size</code> and <code>class</code>, to support debugging decisions.</li>
+      <li>The learner revised code successfully after feedback.</li>
+      <li>The learner distinguished element-wise multiplication from matrix multiplication after a guided prompt.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Growth Areas</h2>
+    <ul>
+      <li>Practice table indexing forms and connect each form to its output type.</li>
+      <li>Predict array size before running code, especially with row and column vector combinations.</li>
+      <li>When debugging, state the expected result before editing the code.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Recommended Next Practice</h2>
+    <ol>
+      <li>Complete a table indexing exercise that checks <code>class</code>, <code>size</code>, and numeric output.</li>
+      <li>Trace three element-wise operations involving row vectors, column vectors, and matrices.</li>
+      <li>Debug a short script where one line uses <code>*</code> instead of <code>.*</code>.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Instructor-Shareable Summary</h2>
+    <p>
+      The learner practiced element-wise operations, array shape reasoning, table
+      indexing, and debugging workflow. They correctly used MATLAB evidence to
+      support debugging decisions and revised one hands-on script after feedback.
+      Recommended follow-up is additional practice on table indexing output
+      types and array shape prediction. Activity metrics: 3 of 4 MCQs correct, 2
+      hands-on scripts completed, and 1 debugging task completed.
+    </p>
+  </section>
+
+  <footer>
+    Generated by MATLAB AI Tutor Session Report.
+  </footer>
+</body>
+</html>
