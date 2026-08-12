@@ -1,0 +1,42 @@
+{
+  "course": {
+    "title": "Engineering Signals and Systems 2e MATLAB Course Designer Companion",
+    "id": "ess2-matlab-companion"
+  },
+  "module": {
+    "title": "2-3 Convolution",
+    "order": 8
+  },
+  "learningActivity": {
+    "title": "MATLAB Evidence for Convolution",
+    "order": 2,
+    "type": "MATLAB Exercise",
+    "backgroundFile": "background.m",
+    "taskFile": "task.m",
+    "objective": "Use MATLAB to model, visualize, and verify the core idea in Convolution.",
+    "estimatedTimeMinutes": 35
+  },
+  "graderSource": {
+    "folder": "grader-items/module-008-activity-02-2-3-convolution",
+    "description": "description.txt",
+    "template": "template.m",
+    "solution": "solution.m",
+    "tests": "tests.m"
+  },
+  "products": {
+    "required": [
+      "MATLAB"
+    ],
+    "toolboxes": []
+  },
+  "validation": {
+    "status": "passed",
+    "checks": [
+      "validation-report.md"
+    ]
+  },
+  "persistence": {
+    "commonCartridgePath": "export/engineering-signals-systems-2e-live-course.imscc",
+    "courseDesignerApiReady": true
+  }
+}

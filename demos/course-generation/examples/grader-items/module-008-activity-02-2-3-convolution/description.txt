@@ -1,0 +1,5 @@
+Background
+This MATLAB Exercise supports section 2-3, Convolution. The learning objective is to use MATLAB to model, visualize, and verify the core idea in convolution. Learners use a small, reproducible MATLAB experiment to connect the section concept to computed evidence rather than only symbolic manipulation.
+
+Task
+Edit template.m so it constructs a representative signal, system response, spectrum, image, or discrete-time sequence for Convolution. Preserve the required output variable named activityResult. The struct must include topic, domain, metricNames, and metrics fields. Add any additional fields that document the vectors, arrays, or plots you used as evidence. Run the tests to confirm the required fields and finite metrics are present.
