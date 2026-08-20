@@ -4,6 +4,3 @@ Create a MATLAB script that stores event details as text and communicates them i
 2. Create `eventNotice` from `eventTitle`, `eventDay`, and `eventRoom`.
 3. Create `alternateEventNotice` from the alternate event variables.
 4. Each notice must contain three lines: the title, `Day: day`, and `Location: room`.
-
-Hints:
-Use `newline` between the lines. Convert the day number with `string` before adding it to a text value.

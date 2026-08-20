@@ -4,6 +4,3 @@ Create a MATLAB script that stores student information as text and combines it i
 2. Create the string scalar `welcomeMessage` using `studentName` and `studentId`.
 3. Create the string scalar `alternateWelcomeMessage` using `alternateStudentName` and `alternateStudentId`.
 4. Each message must read exactly: Welcome, Name! Your student ID is ID.
-
-Hints:
-Use double quotes to create string scalars. Convert a numeric identifier to text with `string` before combining it with other text.

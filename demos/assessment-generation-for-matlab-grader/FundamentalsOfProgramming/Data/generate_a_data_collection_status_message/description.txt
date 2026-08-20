@@ -5,6 +5,3 @@ Create a MATLAB script that stores data-collection information and communicates 
 3. Create `singleStatusMessage` using `singleDataSetName` and `singleMeasurementCount`.
 4. Create `largeStatusMessage` using `largeDataSetName` and `largeMeasurementCount`.
 5. Each message must read as `Name: count measurement collected.` for one measurement or `Name: count measurements collected.` otherwise.
-
-Hints:
-Use `string` to convert a count to text. Choose the word `measurement` or `measurements` based on whether the corresponding count equals one.

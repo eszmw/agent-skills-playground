@@ -73,6 +73,8 @@ Create one folder named with a snake_case title under the profile output locatio
 
 - Generate only Script or Function code. Use descriptive names, modern string syntax for new text, and no shadowed built-ins, `eval`, `evalin`, or `assignin`.
 - Keep description and template requirements consistent with the solution.
+- For **summative** items, descriptions must contain no hints, self-checks, suggested functions, solution approaches, or answer-revealing implementation guidance. State a function, construct, or approach directly in the numbered instructions only when the learning objective explicitly requires it.
+- For **formative** items, a brief non-answer-revealing self-check is allowed. For **both**, include only the formative guidance explicitly approved for revision use and do not reveal summative assessment details.
 - For Function items, create `function_call.m` as a short student-facing call block with representative inputs and no assertions.
 - Create QTI 3 as an optional companion only when enabled by the profile. It preserves native artifacts but does not execute MATLAB Grader logic in a generic QTI player.
 
