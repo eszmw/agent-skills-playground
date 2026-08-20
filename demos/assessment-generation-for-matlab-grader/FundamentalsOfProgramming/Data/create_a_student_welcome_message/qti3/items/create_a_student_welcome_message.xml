@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qti-assessment-item xmlns="http://www.imsglobal.org/xsd/imsqtiasi_v3p0" xmlns:mgg="https://www.mathworks.com/ns/matlab-grader-generator" identifier="item_create_a_student_welcome_message" title="Create a Student Welcome Message" adaptive="false" time-dependent="false">
+  <qti-response-declaration identifier="RESPONSE" cardinality="single" base-type="string"/>
+  <qti-outcome-declaration identifier="SCORE" cardinality="single" base-type="float"><qti-default-value><qti-value>0</qti-value></qti-default-value></qti-outcome-declaration>
+  <qti-item-body>
+    <section class="matlab-grader-description"><h2>Create a Student Welcome Message</h2><pre><![CDATA[Create a MATLAB script that stores student information as text and combines it into welcome messages. This assessment checks that you can create string values, convert numeric identifiers to text, and use string concatenation to communicate information clearly.
+
+1. Leave the provided variables unchanged.
+2. Create the string scalar `welcomeMessage` using `studentName` and `studentId`.
+3. Create the string scalar `alternateWelcomeMessage` using `alternateStudentName` and `alternateStudentId`.
+4. Each message must read exactly: Welcome, Name! Your student ID is ID.
+
+Hints:
+Use double quotes to create string scalars. Convert a numeric identifier to text with `string` before combining it with other text.]]></pre></section>
+    <section class="matlab-grader-template"><h3>Learner Template</h3><pre><![CDATA[% Given student information (do not change)
+studentName = "Avery Nguyen";
+studentId = randi([1000, 9999]);
+alternateStudentName = "Jordan Patel";
+alternateStudentId = randi([100000, 999999]);
+
+% Create readable welcome messages
+% YOUR CODE HERE]]></pre></section>
+    <p>Enter the completed MATLAB code for this assessment item.</p>
+    <qti-extended-text-interaction response-identifier="RESPONSE" expected-lines="20"/>
+  </qti-item-body>
+  <qti-response-processing><qti-set-outcome-value identifier="SCORE"><qti-base-value base-type="float">0</qti-base-value></qti-set-outcome-value></qti-response-processing>
+  <qti-modal-feedback outcome-identifier="SCORE" identifier="MATLAB_GRADER_METADATA" show-hide="show">
+    <mgg:metadata>
+      <mgg:assessment-item-type>Script</mgg:assessment-item-type>
+      <mgg:assessment-purpose>Summative</mgg:assessment-purpose>
+      <mgg:difficulty>Easy</mgg:difficulty>
+      <mgg:learning-objective><![CDATA[Use strings to store and communicate textual data.]]></mgg:learning-objective>
+      <mgg:class-assessment><![CDATA[]]></mgg:class-assessment>
+      <mgg:function-call><![CDATA[]]></mgg:function-call>
+      <mgg:solution><![CDATA[% Given student information
+studentName = "Avery Nguyen";
+studentId = randi([1000, 9999]);
+alternateStudentName = "Jordan Patel";
+alternateStudentId = randi([100000, 999999]);
+
+% Create readable welcome messages
+welcomeMessage = "Welcome, " + studentName + "! Your student ID is " + string(studentId) + ".";
+alternateWelcomeMessage = "Welcome, " + alternateStudentName + "! Your student ID is " + string(alternateStudentId) + ".";]]></mgg:solution>
+      <mgg:tests><![CDATA[%% Test 1: Create the primary welcome message
+expectedMessage = "Welcome, " + studentName + "! Your student ID is " + string(studentId) + ".";
+assessVariableEqual('welcomeMessage', expectedMessage);
+
+%% Test 2: Create the alternate welcome message
+expectedMessage = "Welcome, " + alternateStudentName + "! Your student ID is " + string(alternateStudentId) + ".";
+assessVariableEqual('alternateWelcomeMessage', expectedMessage);
+
+%% Test 3: Use the alternate identifier range correctly
+expectedMessage = "Welcome, " + alternateStudentName + "! Your student ID is " + string(alternateStudentId) + ".";
+assessVariableEqual('alternateWelcomeMessage', expectedMessage);
+
+%% Test 4: Store the primary message as a string
+assessVariableEqual('class(welcomeMessage)', 'string');]]></mgg:tests>
+      <mgg:supporting-class><![CDATA[]]></mgg:supporting-class>
+    </mgg:metadata>
+  </qti-modal-feedback>
+</qti-assessment-item>

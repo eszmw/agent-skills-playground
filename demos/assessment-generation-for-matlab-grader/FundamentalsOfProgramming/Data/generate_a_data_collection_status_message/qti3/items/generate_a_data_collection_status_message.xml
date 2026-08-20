@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qti-assessment-item xmlns="http://www.imsglobal.org/xsd/imsqtiasi_v3p0" xmlns:mgg="https://www.mathworks.com/ns/matlab-grader-generator" identifier="item_generate_a_data_collection_status_message" title="Generate a Data Collection Status Message" adaptive="false" time-dependent="false">
+  <qti-response-declaration identifier="RESPONSE" cardinality="single" base-type="string"/>
+  <qti-outcome-declaration identifier="SCORE" cardinality="single" base-type="float"><qti-default-value><qti-value>0</qti-value></qti-default-value></qti-outcome-declaration>
+  <qti-item-body>
+    <section class="matlab-grader-description"><h2>Generate a Data Collection Status Message</h2><pre><![CDATA[Create a MATLAB script that stores data-collection information and communicates its status in a clear text message. This assessment checks that you can build string scalars from text and numeric data, including conditional singular and plural wording.
+
+1. Leave all provided variables unchanged.
+2. Create `statusMessage` using `dataSetName` and `measurementCount`.
+3. Create `singleStatusMessage` using `singleDataSetName` and `singleMeasurementCount`.
+4. Create `largeStatusMessage` using `largeDataSetName` and `largeMeasurementCount`.
+5. Each message must read as `Name: count measurement collected.` for one measurement or `Name: count measurements collected.` otherwise.
+
+Hints:
+Use `string` to convert a count to text. Choose the word `measurement` or `measurements` based on whether the corresponding count equals one.]]></pre></section>
+    <section class="matlab-grader-template"><h3>Learner Template</h3><pre><![CDATA[% Given data-collection information (do not change)
+dataSetName = "Temperature";
+measurementCount = randi([2, 9]);
+singleDataSetName = "Humidity";
+singleMeasurementCount = randi([1, 1]);
+largeDataSetName = "Pressure";
+largeMeasurementCount = randi([100, 999]);
+
+% Select the appropriate wording and create the status messages
+% YOUR CODE HERE]]></pre></section>
+    <p>Enter the completed MATLAB code for this assessment item.</p>
+    <qti-extended-text-interaction response-identifier="RESPONSE" expected-lines="20"/>
+  </qti-item-body>
+  <qti-response-processing><qti-set-outcome-value identifier="SCORE"><qti-base-value base-type="float">0</qti-base-value></qti-set-outcome-value></qti-response-processing>
+  <qti-modal-feedback outcome-identifier="SCORE" identifier="MATLAB_GRADER_METADATA" show-hide="show">
+    <mgg:metadata>
+      <mgg:assessment-item-type>Script</mgg:assessment-item-type>
+      <mgg:assessment-purpose>Summative</mgg:assessment-purpose>
+      <mgg:difficulty>Hard</mgg:difficulty>
+      <mgg:learning-objective><![CDATA[Use strings to store and communicate textual data.]]></mgg:learning-objective>
+      <mgg:class-assessment><![CDATA[]]></mgg:class-assessment>
+      <mgg:function-call><![CDATA[]]></mgg:function-call>
+      <mgg:solution><![CDATA[% Given data-collection information
+dataSetName = "Temperature";
+measurementCount = randi([2, 9]);
+singleDataSetName = "Humidity";
+singleMeasurementCount = randi([1, 1]);
+largeDataSetName = "Pressure";
+largeMeasurementCount = randi([100, 999]);
+
+% Select the appropriate wording for each count
+if measurementCount == 1
+    measurementWord = "measurement";
+else
+    measurementWord = "measurements";
+end
+
+if singleMeasurementCount == 1
+    singleMeasurementWord = "measurement";
+else
+    singleMeasurementWord = "measurements";
+end
+
+if largeMeasurementCount == 1
+    largeMeasurementWord = "measurement";
+else
+    largeMeasurementWord = "measurements";
+end
+
+% Create the status messages
+statusMessage = dataSetName + ": " + string(measurementCount) + " " + measurementWord + " collected.";
+singleStatusMessage = singleDataSetName + ": " + string(singleMeasurementCount) + " " + singleMeasurementWord + " collected.";
+largeStatusMessage = largeDataSetName + ": " + string(largeMeasurementCount) + " " + largeMeasurementWord + " collected.";]]></mgg:solution>
+      <mgg:tests><![CDATA[%% Test 1: Create the primary status message
+expectedMessage = dataSetName + ": " + string(measurementCount) + " measurements collected.";
+assessVariableEqual('statusMessage', expectedMessage);
+
+%% Test 2: Use singular wording for one measurement
+expectedMessage = singleDataSetName + ": " + string(singleMeasurementCount) + " measurement collected.";
+assessVariableEqual('singleStatusMessage', expectedMessage);
+
+%% Test 3: Create the large-count status message
+expectedMessage = largeDataSetName + ": " + string(largeMeasurementCount) + " measurements collected.";
+assessVariableEqual('largeStatusMessage', expectedMessage);
+
+%% Test 4: Store the primary status message as a string
+assessVariableEqual('class(statusMessage)', 'string');]]></mgg:tests>
+      <mgg:supporting-class><![CDATA[]]></mgg:supporting-class>
+    </mgg:metadata>
+  </qti-modal-feedback>
+</qti-assessment-item>

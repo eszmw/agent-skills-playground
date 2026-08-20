@@ -1,0 +1,10 @@
+Create a MATLAB script that stores data-collection information and communicates its status in a clear text message. This assessment checks that you can build string scalars from text and numeric data, including conditional singular and plural wording.
+
+1. Leave all provided variables unchanged.
+2. Create `statusMessage` using `dataSetName` and `measurementCount`.
+3. Create `singleStatusMessage` using `singleDataSetName` and `singleMeasurementCount`.
+4. Create `largeStatusMessage` using `largeDataSetName` and `largeMeasurementCount`.
+5. Each message must read as `Name: count measurement collected.` for one measurement or `Name: count measurements collected.` otherwise.
+
+Hints:
+Use `string` to convert a count to text. Choose the word `measurement` or `measurements` based on whether the corresponding count equals one.

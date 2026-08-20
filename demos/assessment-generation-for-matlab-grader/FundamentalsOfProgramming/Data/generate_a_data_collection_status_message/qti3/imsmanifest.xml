@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
+    identifier="manifest_generate_a_data_collection_status_message">
+  <metadata>
+    <schema>QTI</schema>
+    <schemaversion>3.0</schemaversion>
+  </metadata>
+  <resources>
+    <resource identifier="res_generate_a_data_collection_status_message" type="imsqti_item_xmlv3p0" href="items/generate_a_data_collection_status_message.xml">
+      <file href="items/generate_a_data_collection_status_message.xml"/>
+    </resource>
+  </resources>
+</manifest>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
+    identifier="manifest_build_a_multiline_event_notice">
+  <metadata>
+    <schema>QTI</schema>
+    <schemaversion>3.0</schemaversion>
+  </metadata>
+  <resources>
+    <resource identifier="res_build_a_multiline_event_notice" type="imsqti_item_xmlv3p0" href="items/build_a_multiline_event_notice.xml">
+      <file href="items/build_a_multiline_event_notice.xml"/>
+    </resource>
+  </resources>
+</manifest>
