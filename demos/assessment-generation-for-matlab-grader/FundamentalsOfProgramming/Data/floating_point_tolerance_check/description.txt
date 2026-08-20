@@ -1,0 +1,10 @@
+Create a MATLAB script that compares a floating-point calculation with its mathematically expected value. This assessment checks that you can recognize that values that appear equal mathematically might not match exactly in floating-point arithmetic.
+
+1. Leave the provided values unchanged.
+2. Create `computedSum` by adding `firstAddend` and `secondAddend`.
+3. Create `difference` as `computedSum - expectedSum`.
+4. Create the logical scalar `exactMatch` that reports whether `computedSum` and `expectedSum` are exactly equal.
+5. Create the logical scalar `isWithinTolerance` that reports whether the absolute difference is less than `tolerance`.
+
+Hint:
+Use `abs` to measure the size of a difference. A tolerance comparison can be more appropriate than exact equality for floating-point values.

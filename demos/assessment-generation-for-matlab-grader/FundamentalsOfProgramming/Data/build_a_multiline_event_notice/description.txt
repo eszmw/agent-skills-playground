@@ -1,4 +1,4 @@
-Create a MATLAB script that stores event details as text and communicates them in a multi-line notice. This assessment checks that you can combine string values, convert numeric details to text, and include line breaks in a string scalar.
+Create a MATLAB script that stores event details as text and communicates them in a multi-line notice. This moderate-complexity assessment checks that you can combine string values, convert numeric details to text, and include line breaks in a string scalar.
 
 1. Leave the provided event variables unchanged.
 2. Create `eventNotice` from `eventTitle`, `eventDay`, and `eventRoom`.

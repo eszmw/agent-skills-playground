@@ -78,8 +78,6 @@ Choose evidence based on assessment item type:
 | --- | --- | --- |
 | Script | Workspace variables: existence, class, size, value, tolerance | Required or prohibited functions when objective-specific |
 | Function | Return values across scalar, vector, matrix, and edge inputs | Input validation behavior when required |
-| Class | Constructor-created object state, property values, method outputs | Operator behavior, constant access, object arrays |
-| Object usage | Object array construction and computed output variable | Specific element properties and aggregation behavior |
 
 Use MATLAB Grader-friendly checks:
 
@@ -91,18 +89,16 @@ Use MATLAB Grader-friendly checks:
 - `randi([lo, hi])` when the range matters more than permutation.
 - Explicit numeric tolerance when comparing floating-point values.
 
-## Test Suite Pattern
+## Assessment configuration pattern
 
-For each item, generate 3 to 5 tests:
+For each requirement, create one distinct, objective-aligned MATLAB Grader assessment:
 
-1. Basic correctness on representative randomized data.
-2. Shape/type/contract check: class, size, function signature behavior, or object type.
-3. Edge or transfer case aligned with the objective.
-4. Hardcoding-detection case using a clearly different numeric range.
-5. Optional method-specific check only if the objective requires or prohibits a construct.
+1. Use Variable equals reference solution for direct output equality.
+2. Add a transfer, shape, type, or contract check only when it measures separate evidence.
+3. Use MATLAB Code only when direct equality cannot express the required check; derive expectations from `referenceVariables`.
+4. Add Function or Keyword present/absent only when the objective explicitly requires or prohibits a named construct.
 
-Do not include all five tests if fewer tests cleanly measure the objective. Avoid redundant
-tests that all fail for the same reason.
+Do not use fixed test counts. Avoid redundant checks that fail for the same reason.
 
 ## Description Pattern
 

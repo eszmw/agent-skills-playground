@@ -1,103 +1,73 @@
-# Grader Assessment Generation
+# MATLAB Grader assessment generation
 
-A demo showing how an agent can generate complete MATLAB Grader assessment items from a single learning objective.
-The agent interviews you about the objective and assessment context, proposes candidate assessment items at varied difficulty, and writes ready-to-review artifact files for each item you select.
-
-The generator helps instructors save authoring time while producing consistent, research-informed assessment materials that can be reviewed, revised, and shared across MATLAB Grader workflows.
-
-## What you'll do
-
-You'll open this folder in your agent and state a learning objective.
-The `matlab-generate-grader-assessments` skill walks you through choosing an assessment item type, picking from generated assessment item ideas, and writing the artifact files into your working directory.
-Every generated item lands as a self-contained folder you paste into MATLAB Grader field by field.
-
-If you are planning a course rollout rather than a single item, the instructor setup skill produces an adoption guide first: a recommended item type and assessment purpose, starter prompts for the `matlab-generate-grader-assessments` skill, review gates, and a first-pilot checklist.
-
-## Skills included
-
-| Skill | Role |
-|---|---|
-| [`matlab-generate-grader-assessments`](skills/matlab-generate-grader-assessments/SKILL.md) | The generator: collects inputs, proposes assessment item options, then writes description, solution, template, tests, and optional QTI 3 interchange files per item. |
-| [`matlab-plan-grader-adoption`](skills/matlab-plan-grader-adoption/SKILL.md) | Instructor planning path: produces a course-specific setup guide, starter prompts, review gates, and QTI 3 sharing guidance. |
-
-The `matlab-generate-grader-assessments` skill draws on prompt references under `skills/matlab-generate-grader-assessments/references/`, including a research summary on formative and summative assessment design that shapes how tests and hints are generated.
+This demo generates MATLAB Grader assessment items from learning objectives that have observable MATLAB-code evidence. The workflow is profile-driven, uses only Script and Function submissions, and requires a working MATLAB MCP session for generation preflight and validation.
 
 ## Prerequisites
 
-- An agent that can load local Markdown-based skills and write files to the working directory, such as [Claude Code](https://claude.ai/code).
-- Access to [MATLAB Grader](https://www.mathworks.com/products/matlab-grader.html) to use the generated content.
+- An agent that can load the local skills and write course materials.
+- MATLAB with a connected MATLAB MCP session. The generator verifies code, templates, mutants, and assessment traceability through that session; it does not mark an item ready when MCP validation cannot run.
+- Access to [MATLAB Grader](https://www.mathworks.com/products/matlab-grader.html) to configure the completed item.
 
-Generation itself needs no MATLAB installation.
-The output is MATLAB code, so reviewing it in MATLAB before assigning it to students is recommended.
+## Course profile and suitability gate
 
-## Setup
+[`matlab-grader-course-profile.md`](matlab-grader-course-profile.md) is the committed, versioned source of reusable defaults: output location, purpose, QTI preference, MCP requirement, coding-practice guidance, and the allowed `low`, `moderate`, and `high` complexity levels for each objective.
 
-1. **Clone this repo** if you haven't already:
-   ```bash
-   git clone https://github.com/matlab/agent-skills-playground.git
-   ```
-2. **Open the demo folder** in your agent. Two options:
-   - **Claude Code**: from a terminal, `cd` into `demos/assessment-generation-for-matlab-grader/` and run `claude`. The agent will pick up the skills in this folder's `skills/` directory.
-   - **Other agents**: point the agent at `demos/assessment-generation-for-matlab-grader/skills/` per the agent's instructions for user-defined skills.
+On first use, the generator conducts explicit setup for missing profile values. It never asks an instructor to press Enter for a default. On later uses it reads the profile, first evaluates whether the objective has observable code evidence, and then recommends Script or Function with a rationale. If the objective is unsuitable, it stops with an assessable rewording or a better assessment modality. If the requested complexity is unsupported, it reports that rather than adding unrelated difficulty.
 
-## Walkthrough
-
-Start with a learning objective:
-
-> *Create MATLAB Grader assessment items for this learning objective: use vectorized operations to normalize data.*
-
-The `matlab-generate-grader-assessments` skill takes over and collects the remaining inputs one at a time:
-
-| Input | Choices |
-|---|---|
-| Assessment item type | Script, Function, Class, or Object usage |
-| Class assessment | For Class items: constructor, computed property, instance method, constant property, or operator overloading |
-| Number of options | 2 to 6 candidate item ideas (default 4) |
-| Assessment purpose | Formative, summative, or both |
-| QTI 3 export | Optional interchange files for portability and sharing |
-
-The agent then presents candidate assessment items in a table with difficulty and concept focus.
-Pick the ones you want, and the agent generates each item's artifacts sequentially: description, reference solution, learner template, function call block when applicable, and tests.
-
-For the instructor planning path, start instead with:
-
-> *I'm introducing MATLAB Grader in an introductory programming course. Generate an instructor setup guide for the module on writing functions.*
+The generator proposes one titled task and task statement per objective. The only follow-up is approval or revision, plus a complexity decision if the profile does not already specify one. “Both” is explained only when selected: the item is designed for formative revision and later summative use.
 
 ## What gets generated
 
-Each selected assessment item becomes one folder with these files:
+Each item has the following instructor-facing files:
 
-| File | Goes into MATLAB Grader field |
-|---|---|
+| File | MATLAB Grader use |
+| --- | --- |
 | `description.txt` | Assessment Item Description & Instructions |
 | `solution.m` | Reference Solution |
 | `template.m` | Learner Template |
-| `function_call.m` | Code to call your function (Function items only) |
-| `tests.m` | Assessments; each `%% Test N:` section becomes a separate test |
-| `supporting_class.m` | Supporting Files (Object usage items only) |
-| `qti3/` | Optional QTI 3 interchange package for sharing and review |
+| `function_call.m` | Code to call your function, for Function items only |
+| `assessments.md` | Authoritative setup guide and requirement-to-assessment matrix |
+| `tests.m` | Only for rows configured as MATLAB Code assessments |
+| `qti3/` | Optional companion interchange package |
 
-Generated tests follow quality rules from the skill: randomized inputs via `randi` or `randperm`, one `assessVariableEqual` call per test section, 3 to 5 tests, and at least one hardcoding-detection test on a different numeric range.
+`assessments.md` has one row per assessment. It identifies the Grader Test Type, exact UI fields, any code to paste, expected evidence, and learning-objective traceability.
 
-Review all generated materials before using them in an assessment.
+## Configuring MATLAB Grader
 
-## Example output
+For each row in `assessments.md`, select the listed test type and enter its UI fields exactly:
 
-[`examples/vector_range_normalization/`](examples/vector_range_normalization/) is a complete Function-type assessment item produced with this skill for the objective *use vectorized operations to normalize data*, summative purpose.
-It shows the artifact set you can expect: student-facing description, reference solution, learner template with blanks, a pre-submit function call block, and four randomized tests including hardcoding detection.
-The solution and tests were verified against each other in MATLAB over randomized inputs.
+- **Variable equals reference solution**: enter the listed student variable or expression. Use this for direct output equality; MATLAB Grader compares it with the reference solution.
+- **MATLAB Code**: paste only the supplied custom check. Expected values must come from `referenceVariables.<name>`, so the check does not duplicate reference logic. For class-sensitive outcomes, compare with `class(referenceVariables.<name>)`.
+- **Function or Keyword is present**: use only when the objective explicitly requires the named construct.
+- **Function or Keyword is absent**: use only when the item explicitly requires an implementation rather than a named prohibited shortcut.
+
+The generator rejects duplicated checks and never pads an item to a fixed number of tests. `tests.m` contains only MATLAB Code rows; the other three Grader test types are represented solely by their documented setup in `assessments.md`.
+
+## Quality gates and validation
+
+Before an item is ready, the workflow:
+
+1. Runs MATLAB Code Analyzer and applies MATLAB coding guidance to the solution, template, function-call block, and transient validation code.
+2. Rejects analyzer errors and resolves or reports warnings. Generated materials use descriptive names, modern string syntax, and no shadowed built-ins or unsafe dynamic-workspace functions.
+3. Creates a temporary, class-based `matlab.unittest` harness outside the item folder. MATLAB MCP runs it against the reference solution, a completed template, and targeted incorrect variants.
+4. Fails validation if the reference does not pass, a concept-specific mutant does not fail, or a description/template/assessment requirement disagrees.
+
+This confirms MATLAB behavior and the documented Grader configuration model. It does not replace the instructor’s final paste/configuration and preview in MATLAB Grader. Function argument-validation guidance is used only when an objective explicitly includes an input-contract outcome; introductory functions do not receive an `arguments` block by default.
+
+## Example course materials
+
+[`FundamentalsOfProgramming/Data/`](FundamentalsOfProgramming/Data/) contains regenerated Script items for string construction:
+
+- `create_a_student_welcome_message` — low complexity.
+- `build_a_multiline_event_notice` — moderate complexity.
+- `generate_a_data_collection_status_message` — moderate complexity.
+
+The profile records that this strings objective does not support high complexity without distorting what is being assessed.
 
 ## Evals
 
-[`evals/`](evals/) contains scenario-based checks for these skills: user prompts, scripted replies, and pass-criteria checklists.
-Run them after modifying a skill, or read them as worked examples of expected behavior.
+[`evals/README.md`](evals/README.md) contains scenario-based checks, including unsuitable objectives, profile reuse, infeasible complexity, all four MATLAB Grader test types, reference-variable custom checks, duplicate rejection, quality gates, and MCP failures.
 
 ## Credits
 
-The concept of generating complete MATLAB Grader assessment items from a learning objective comes from Andre Knoesen (UC Davis) and his [MATLAB Grader Problem Generator](https://github.com/VeriQAi/MatlabGraderProblemGenerator), a web application built on the Anthropic API.
-This demo reimplements that idea as portable agent skills, based on the MATLAB Grader Assessment Item Generator skill package by The MathWorks, Inc.
-
-## Related products from MathWorks
-
-- [MATLAB Grader](https://www.mathworks.com/products/matlab-grader.html): browser-based environment for authoring and autograding MATLAB coding assessments.
-- [MATLAB](https://www.mathworks.com/products/matlab.html): programming and numeric computing platform.
+This demo is inspired by Andre Knoesen’s [MATLAB Grader Problem Generator](https://github.com/VeriQAi/MatlabGraderProblemGenerator), a web application built on the Anthropic API.

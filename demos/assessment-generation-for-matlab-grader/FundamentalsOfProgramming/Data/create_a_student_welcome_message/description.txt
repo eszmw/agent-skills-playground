@@ -1,4 +1,4 @@
-Create a MATLAB script that stores student information as text and combines it into welcome messages. This assessment checks that you can create string values, convert numeric identifiers to text, and use string concatenation to communicate information clearly.
+Create a MATLAB script that stores student information as text and combines it into welcome messages. This low-complexity assessment checks that you can create string scalars, convert numeric identifiers to text, and combine values into clear messages.
 
 1. Leave the provided variables unchanged.
 2. Create the string scalar `welcomeMessage` using `studentName` and `studentId`.
