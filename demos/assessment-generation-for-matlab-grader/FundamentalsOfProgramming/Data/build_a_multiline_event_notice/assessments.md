@@ -2,9 +2,9 @@
 
 Configure these two assessments in MATLAB Grader. No MATLAB Code assessment is required, so this item has no `tests.m`.
 
-| Requirement / LO evidence | Grader Test Type | MATLAB Grader UI fields | Code to paste | Expected evidence | Traceability |
+| Requirement / LO evidence | Grader Test Type | MATLAB Grader UI fields | Code to paste | Expected evidence | Optional feedback on incorrect submission | Traceability |
 | --- | --- | --- | --- | --- | --- |
-| Combine title, numeric day, room, and line breaks in the required three-line notice | Variable equals reference solution | Variable name: `eventNotice` | Not applicable | Matches the reference string scalar for the primary event | LO: create a multiline string scalar from text and numeric data |
-| Apply the same multiline construction to distinct values | Variable equals reference solution | Variable name: `alternateEventNotice` | Not applicable | Matches the reference string scalar for the alternate event | LO: create a multiline string scalar from text and numeric data |
+| Recreate the complete five-line text using the supplied fragments | Variable equals reference solution | Variable name: `joke` | Not applicable | Matches the reference string scalar exactly | Check the required line order and punctuation in the completed string. | LO: use whitespace and line breaks in string concatenation |
+| Use `newline` to create the required line breaks | Function or Keyword is present | Function or keyword: `newline` | Not applicable | Student code includes `newline` | The required line-break construct is not present. | LO: use `newline` in string concatenation |
 
-`newline` and `string` are demonstrated in the reference solution. The assessment measures the observable complete notices; it does not add a construct-presence check because the objective does not require one named implementation method.
+The direct reference check evaluates the complete joke. The second assessment is included because the objective explicitly requires `newline`.

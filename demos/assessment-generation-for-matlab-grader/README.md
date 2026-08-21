@@ -30,7 +30,7 @@ Each item has the following instructor-facing files:
 | `tests.m` | Only for rows configured as MATLAB Code assessments |
 | `qti3/` | Optional companion interchange package |
 
-`assessments.md` has one row per assessment. It identifies the Grader Test Type, exact UI fields, any code to paste, expected evidence, and learning-objective traceability.
+`assessments.md` has one row per assessment. It identifies the Grader Test Type, exact UI fields, any code to paste, expected evidence, optional feedback on incorrect submissions, and learning-objective traceability.
 
 ## Configuring MATLAB Grader
 
@@ -43,6 +43,14 @@ For each row in `assessments.md`, select the listed test type and enter its UI f
 
 The generator rejects duplicated checks and never pads an item to a fixed number of tests. `tests.m` contains only MATLAB Code rows; the other three Grader test types are represented solely by their documented setup in `assessments.md`.
 
+## Feedback on incorrect submissions
+
+The generator can add optional feedback to an assessment row when a targeted incorrect
+variant exposes a useful misconception. Formative feedback can name a productive next
+check and, when useful, a guided correction. Summative feedback is diagnosis only: it
+identifies the unmet requirement without revealing code, expected values, solution steps,
+or hidden-test details. Rows without a distinct, validated misconception have no feedback.
+
 ## Quality gates and validation
 
 Before an item is ready, the workflow:
@@ -50,19 +58,20 @@ Before an item is ready, the workflow:
 1. Runs MATLAB Code Analyzer and applies MATLAB coding guidance to the solution, template, function-call block, and transient validation code.
 2. Rejects analyzer errors and resolves or reports warnings. Generated materials use descriptive names, modern string syntax, and no shadowed built-ins or unsafe dynamic-workspace functions.
 3. Creates a temporary, class-based `matlab.unittest` harness outside the item folder. MATLAB MCP runs it against the reference solution, a completed template, and targeted incorrect variants.
-4. Fails validation if the reference does not pass, a concept-specific mutant does not fail, or a description/template/assessment requirement disagrees.
+4. Fails validation if the reference does not pass, a concept-specific mutant does not fail, a nonempty feedback entry lacks a linked mutant, or a description/template/assessment requirement disagrees.
 
 This confirms MATLAB behavior and the documented Grader configuration model. It does not replace the instructor’s final paste/configuration and preview in MATLAB Grader. Function argument-validation guidance is used only when an objective explicitly includes an input-contract outcome; introductory functions do not receive an `arguments` block by default.
 
 ## Example course materials
 
-[`FundamentalsOfProgramming/Data/`](FundamentalsOfProgramming/Data/) contains regenerated Script items for string construction:
+[`FundamentalsOfProgramming/Data/`](FundamentalsOfProgramming/Data/) contains eight summative Script items:
 
-- `create_a_student_welcome_message` — low complexity.
-- `build_a_multiline_event_notice` — moderate complexity.
-- `generate_a_data_collection_status_message` — moderate complexity.
+- Floating-point limitations: `compare_floating_point_values_with_tolerance` (low) and `floating_point_tolerance_check` (moderate).
+- Textual strings: `create_a_student_welcome_message` (low) and `generate_a_data_collection_status_message` (moderate).
+- Whitespace in strings: `concatenate_strings_with_whitespace` (low) and `build_a_multiline_event_notice` (moderate).
+- Special values: `generate_and_identify_special_values` (low) and `classify_special_value_arithmetic` (moderate).
 
-The profile records that this strings objective does not support high complexity without distorting what is being assessed.
+The profile allows high complexity for floating-point and special-value objectives only. Standalone strings and whitespace objectives support low and moderate complexity.
 
 ## Evals
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="greet_user_package" xmlns="http://www.imsglobal.org/xsd/imscp_v1p1">
+  <resources>
+    <resource identifier="greet_user" type="imsqti_item_xmlv3p0" href="assessmentItem.xml">
+      <file href="assessmentItem.xml"/>
+      <file href="../description.txt"/>
+      <file href="../template.m"/>
+      <file href="../solution.m"/>
+      <file href="../function_call.m"/>
+      <file href="../assessments.md"/>
+    </resource>
+  </resources>
+</manifest>

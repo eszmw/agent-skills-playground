@@ -1,31 +1,33 @@
 % Given data-collection information
-dataSetName = "Temperature";
-measurementCount = randi([2, 9]);
-singleDataSetName = "Humidity";
-singleMeasurementCount = randi([1, 1]);
-largeDataSetName = "Pressure";
-largeMeasurementCount = randi([100, 999]);
+tempDataSetName = "Temperature";
+humidityDataSetName = "Humidity";
+pressureDataSetName = "Pressure";
+countValues = [1, randi([2, 9]), randi([100, 999])];
+countOrder = randperm(3);
+tempCount = countValues(countOrder(1));
+humidityCount = countValues(countOrder(2));
+pressureCount = countValues(countOrder(3));
 
-% Select the appropriate wording for each count
-if measurementCount == 1
-    measurementWord = "measurement";
+% Select the appropriate wording for each data set
+if tempCount == 1
+    tempMeasurementWord = "measurement";
 else
-    measurementWord = "measurements";
+    tempMeasurementWord = "measurements";
 end
 
-if singleMeasurementCount == 1
-    singleMeasurementWord = "measurement";
+if humidityCount == 1
+    humidityMeasurementWord = "measurement";
 else
-    singleMeasurementWord = "measurements";
+    humidityMeasurementWord = "measurements";
 end
 
-if largeMeasurementCount == 1
-    largeMeasurementWord = "measurement";
+if pressureCount == 1
+    pressureMeasurementWord = "measurement";
 else
-    largeMeasurementWord = "measurements";
+    pressureMeasurementWord = "measurements";
 end
 
 % Create the status messages
-statusMessage = dataSetName + ": " + string(measurementCount) + " " + measurementWord + " collected.";
-singleStatusMessage = singleDataSetName + ": " + string(singleMeasurementCount) + " " + singleMeasurementWord + " collected.";
-largeStatusMessage = largeDataSetName + ": " + string(largeMeasurementCount) + " " + largeMeasurementWord + " collected.";
+tempStatusMessage = tempDataSetName + ": " + string(tempCount) + " " + tempMeasurementWord + " collected.";
+humidityStatusMessage = humidityDataSetName + ": " + string(humidityCount) + " " + humidityMeasurementWord + " collected.";
+pressureStatusMessage = pressureDataSetName + ": " + string(pressureCount) + " " + pressureMeasurementWord + " collected.";

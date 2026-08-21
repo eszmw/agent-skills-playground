@@ -1,0 +1,7 @@
+Write a function named `solveWithFzero` with this signature:
+
+```matlab
+root = solveWithFzero(functionHandle, initialGuess)
+```
+
+`functionHandle` is a function handle for a scalar-valued function, and `initialGuess` is a numeric scalar. Pass the supplied function handle and initial guess to `fzero`. Return the zero found by `fzero` in `root`.

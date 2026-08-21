@@ -1,6 +1,6 @@
 ---
 name: matlab-generate-grader-assessments
-description: Generate MATLAB Grader assessment items that are suitability-gated, profile-driven, and validated through MATLAB MCP. Produces Script or Function items with MATLAB Grader assessment setup instructions.
+description: Generate MATLAB Grader assessment items that are suitability-gated, profile-driven, feedback-aware, and validated through MATLAB MCP. Produces Script or Function items with MATLAB Grader assessment setup instructions.
 license: MathWorks BSD-3-Clause (see LICENSE)
 metadata:
   author: MathWorks
@@ -23,6 +23,7 @@ Read these files before generating:
 - `references/description-prompt.md`, `solution-prompt.md`, `template-prompt.md`, and `function-call-prompt.md` as applicable.
 - `references/tests-prompt.md` for the Grader assessment model.
 - `references/qti3-prompt.md` only if the course profile enables QTI.
+- `references/all-grader-problems-template.md` only if the user selects combined single-file output.
 
 MATLAB MCP is mandatory. Confirm that a working MATLAB MCP session can run a small MATLAB command before proposing or generating an item. If it cannot, stop and say that generation is blocked; do not claim that code or assessments have been validated.
 
@@ -63,7 +64,15 @@ Before generation, determine whether the objective has observable MATLAB-code ev
 - If it does, recommend Script or Function and give a brief rationale.
 - Read the objective’s allowed complexity from the profile. If the requested level is not supported, report that it is unsupported and do not add unrelated requirements to inflate complexity.
 
-For each objective, present exactly one recommended title and task statement. Ask only for approval or revision, and for a complexity decision only when the profile leaves it undecided. Explain “both” only when it is selected: the same item is designed for formative revision and later summative use.
+For each objective, present exactly one recommended title and task statement. Titles must describe the learning behavior and must not include a command or keyword checked by an assessment for that item. Ask only for approval or revision, and for a complexity decision only when the profile leaves it undecided. Explain “both” only when it is selected: the same item is designed for formative revision and later summative use.
+
+## Combined single-file output
+
+After the requested item proposals are approved and before generating artifacts, ask once per batch whether the user wants a combined `AllGraderProblems.md` output. Do not ask again when the user has already explicitly requested or declined it.
+
+- If the user selects combined output, read `references/all-grader-problems-template.md` and create `AllGraderProblems.md` in the profile output location.
+- The file is an instructor-facing companion, not a replacement for the native item folders. Include each generated item’s title, student description, submission type, reference solution, learner template, Function call block when applicable, assessment setup, and only optional feedback entries supported by validated incorrect variants.
+- If the user declines combined output, generate only the native item folders and their enabled QTI companions.
 
 ## Generate the native artifacts
 
@@ -82,7 +91,7 @@ Create one folder named with a snake_case title under the profile output locatio
 
 `assessments.md` is the authoritative MATLAB Grader setup guide. It must contain a requirement-to-assessment matrix and one row per configured assessment with:
 
-| Requirement / LO evidence | Grader Test Type | MATLAB Grader UI fields | Code to paste | Expected evidence | Traceability |
+| Requirement / LO evidence | Grader Test Type | MATLAB Grader UI fields | Code to paste | Expected evidence | Optional feedback on incorrect submission | Traceability |
 | --- | --- | --- | --- | --- | --- |
 
 Use these test types precisely:
@@ -92,9 +101,20 @@ Use these test types precisely:
 - **Function or Keyword is present** only when the objective explicitly requires that named construct.
 - **Function or Keyword is absent** only when the item explicitly requires implementation rather than a named prohibited shortcut.
 
+For every configured assessment, provide a concise learner-visible assessment name in its MATLAB Grader UI fields. An assessment name for a **Function or Keyword is present** or **Function or Keyword is absent** row must describe the behavior being assessed and must not include the command or keyword checked by that row. Put the checked command or keyword only in the relevant configuration field.
+
 Create `tests.m` only for MATLAB Code rows. Split it into clearly labeled sections, one per custom assessment. Do not use a fixed number of tests. Every check must be distinct, objective-aligned, and traceable. Reject duplicated test logic.
 
 Fail generation when the description, template, solution, stated requirements, and `assessments.md` disagree.
+
+### Optional feedback on incorrect submissions
+
+During problem development, create and validate targeted incorrect variants for plausible conceptual or syntactic mistakes. For each distinct assessment row, generate feedback only when a validated variant reveals a useful misconception. Do not add generic or duplicate feedback merely to fill every row.
+
+- For **formative** items, feedback identifies the failed requirement and a productive next check. A guided correction is allowed when it is educationally useful.
+- For **summative** items, feedback is diagnosis only: identify the unmet requirement or misconception without code, expected values, solution steps, or hidden-test details.
+- For **both** items, label any guided feedback as formative-only so instructors can omit it in a summative deployment.
+- Put the optional text in the matrix column and tell the instructor to paste it into the feedback field for that MATLAB Grader assessment. Use `—` when feedback is not appropriate.
 
 ## Quality gates and validation
 
@@ -102,12 +122,12 @@ Before marking output ready:
 
 1. Use `matlab-review-code` for every generated reference solution, template, function-call block, and temporary validation code. Run MATLAB Code Analyzer and consult the MATLAB coding guidelines. Errors fail generation. Resolve warnings or report why they remain. Enforce descriptive names, modern string usage, no shadowed built-ins, and no unsafe dynamic-workspace functions.
 2. Invoke `matlab-validate-function-arguments` only for Function items whose objective or profile explicitly includes an input contract or argument-validation outcome. Do not add an `arguments` block merely because an item is a Function item.
-3. In a temporary location outside the instructor-facing item folder, create a class-based `matlab.unittest` harness. Use `matlab-testing` and run it through MATLAB MCP against the reference solution, a completed learner template, and targeted incorrect variants. Confirm the reference and completed template pass, concept-specific mutants fail, and every requirement in the matrix is represented.
+3. In a temporary location outside the instructor-facing item folder, create a class-based `matlab.unittest` harness. Use `matlab-testing` and run it through MATLAB MCP against the reference solution, a completed learner template, and targeted incorrect variants. Confirm the reference and completed template pass, concept-specific mutants fail, every requirement in the matrix is represented, and every nonempty feedback entry is backed by its linked mutant.
 4. Do not leave the transient harness in the instructor-facing item folder. Report the MCP run result and its limits: it validates MATLAB behavior and the documented configuration model, while the instructor still pastes/configures the rows in MATLAB Grader.
 
 ## Output summary
 
-For each item, report its title, approved complexity, folder, files, number and type of configured assessments, and the completed MATLAB MCP validation result. Never claim validation when MATLAB MCP did not complete.
+For each item, report its title, approved complexity, folder, files, number and type of configured assessments, number of optional feedback entries, and the completed MATLAB MCP validation result. When created, also report the path to `AllGraderProblems.md`. Never claim validation when MATLAB MCP did not complete.
 
 ## Credits
 

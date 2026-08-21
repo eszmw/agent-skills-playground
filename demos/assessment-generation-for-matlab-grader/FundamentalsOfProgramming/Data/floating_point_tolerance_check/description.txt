@@ -1,7 +1,6 @@
-Create a MATLAB script that compares a floating-point calculation with its mathematically expected value. This assessment checks that you can recognize that values that appear equal mathematically might not match exactly in floating-point arithmetic.
+Create a MATLAB script that demonstrates how floating-point operation order can affect a result.
 
 1. Leave the provided values unchanged.
-2. Create `computedSum` by adding `firstAddend` and `secondAddend`.
-3. Create `difference` as `computedSum - expectedSum`.
-4. Create the logical scalar `exactMatch` that reports whether `computedSum` and `expectedSum` are exactly equal.
-5. Create the logical scalar `isWithinTolerance` that reports whether the absolute difference is less than `tolerance`.
+2. Create `multiplyThenDivide` by evaluating `(largeValue * tinyValue / scaleFactor) * finalFactor`.
+3. Create `divideThenMultiply` by evaluating `(tinyValue / scaleFactor * largeValue) * finalFactor`.
+4. Create `resultDifference` as `multiplyThenDivide - divideThenMultiply`.

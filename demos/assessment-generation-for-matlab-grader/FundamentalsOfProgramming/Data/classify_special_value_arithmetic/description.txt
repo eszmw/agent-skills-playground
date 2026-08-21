@@ -1,0 +1,8 @@
+Create a MATLAB script that evaluates special-value arithmetic and classifies each result.
+
+1. Create `overflowResult` by multiplying `realmax` by `2`.
+2. Create `infinityDifference` by subtracting `Inf` from `Inf`.
+3. Create `zeroTimesInfinity` by multiplying `0` by `Inf`.
+4. Create `overflowIsInfinite` using `isinf` on `overflowResult`.
+5. Create `differenceIsNaN` using `isnan` on `infinityDifference`.
+6. Create `productIsNaN` using `isnan` on `zeroTimesInfinity`.

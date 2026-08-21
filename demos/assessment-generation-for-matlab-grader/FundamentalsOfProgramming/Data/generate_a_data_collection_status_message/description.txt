@@ -1,7 +1,8 @@
-Create a MATLAB script that stores data-collection information and communicates its status in a clear text message. This moderate-complexity assessment checks that you can build string scalars from text and numeric data, including conditional singular and plural wording.
+Create a MATLAB script that communicates the collection status for three data sets.
 
 1. Leave all provided variables unchanged.
-2. Create `statusMessage` using `dataSetName` and `measurementCount`.
-3. Create `singleStatusMessage` using `singleDataSetName` and `singleMeasurementCount`.
-4. Create `largeStatusMessage` using `largeDataSetName` and `largeMeasurementCount`.
-5. Each message must read as `Name: count measurement collected.` for one measurement or `Name: count measurements collected.` otherwise.
+2. Create `tempStatusMessage` using `tempDataSetName` and `tempCount`.
+3. Create `humidityStatusMessage` using `humidityDataSetName` and `humidityCount`.
+4. Create `pressureStatusMessage` using `pressureDataSetName` and `pressureCount`.
+5. Use conditional logic to select `measurement` when a data set has one measurement and `measurements` otherwise.
+6. Each message must read as `Name: count measurement collected.` or `Name: count measurements collected.`, as appropriate for its supplied count.

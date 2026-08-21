@@ -1,10 +1,10 @@
-% Given event details (do not change)
-eventTitle = "Research Expo";
-eventDay = randi([1, 31]);
-eventRoom = "Engineering Hall";
-alternateEventTitle = "Design Showcase";
-alternateEventDay = randi([100, 999]);
-alternateEventRoom = "Innovation Center";
+% Given string fragments (do not change)
+str1 = "Knock";
+str2 = "Who";
+str3 = "'s there";
+str4 = "I didn't know you were an owl";
+str5 = "!";
+str6 = "?";
 
-% Create multi-line event notices
+% Create the five-line joke
 % YOUR CODE HERE

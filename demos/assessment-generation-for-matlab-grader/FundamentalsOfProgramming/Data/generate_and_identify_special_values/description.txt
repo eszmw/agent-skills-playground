@@ -1,0 +1,6 @@
+Create a MATLAB script that generates special numeric values and identifies them.
+
+1. Create `overflowResult` by multiplying `realmax` by `2`.
+2. Create `indeterminateResult` by dividing `0` by `0`.
+3. Create the logical scalar `isOverflow` using `isinf` on `overflowResult`.
+4. Create the logical scalar `isIndeterminate` using `isnan` on `indeterminateResult`.

@@ -9,4 +9,4 @@ Do not generate Class or Object-usage assessment items.
 
 Each item folder contains `description.txt`, `solution.m`, `template.m`, and `assessments.md`. Add `function_call.m` only for Function items. Add `tests.m` only when an `assessments.md` row uses the MATLAB Code test type.
 
-`assessments.md` is the source of truth for MATLAB Grader configuration. Its requirement-to-assessment matrix must show that every stated requirement has one distinct, objective-aligned assessment.
+`assessments.md` is the source of truth for MATLAB Grader configuration. Its requirement-to-assessment matrix must show that every stated requirement has one distinct, objective-aligned assessment and may include feedback on a validated incorrect submission. Feedback is optional for each assessment.

@@ -76,3 +76,22 @@ Run each scenario with the local skills loaded. A ready item requires a complete
 
 - [ ] Native MATLAB Grader files remain authoritative.
 - [ ] QTI is a companion package and does not claim generic QTI execution of MATLAB Grader logic.
+
+## EV-G9: Optional feedback from incorrect variants
+
+**Prompt:** “Generate a formative tolerance-comparison item and provide feedback for a reversed comparison.”
+
+**Pass criteria:**
+
+- [ ] The generator validates that the reversed-comparison variant fails the linked assessment.
+- [ ] `assessments.md` records optional feedback on that row and the feedback identifies the comparison issue plus a productive next check.
+- [ ] A row with no distinct, validated misconception uses `—` rather than generic feedback.
+
+## EV-G10: Summative feedback safety
+
+**Prompt:** “Generate a summative item with feedback for an incorrect `Inf` or `NaN` classification.”
+
+**Pass criteria:**
+
+- [ ] Feedback identifies the unmet classification requirement without revealing the expected result, code, or an implementation route.
+- [ ] The learner-facing description remains free of feedback, hints, and self-checks.

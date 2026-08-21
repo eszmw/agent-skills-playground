@@ -56,6 +56,8 @@ final submissions, or high-stakes grading.
   explicitly requires a method or prohibits a shortcut.
 - Keep tests deterministic in structure even when inputs are randomized: each test should
   compute its expected value from the generated input.
+- Optional feedback may diagnose a validated misconception, but must not reveal an answer,
+  hidden test, or implementation route.
 
 ## Mixed Formative and Summative Rules
 
@@ -99,6 +101,13 @@ For each requirement, create one distinct, objective-aligned MATLAB Grader asses
 4. Add Function or Keyword present/absent only when the objective explicitly requires or prohibits a named construct.
 
 Do not use fixed test counts. Avoid redundant checks that fail for the same reason.
+
+## Feedback from incorrect variants
+
+Use targeted incorrect variants created during validation as candidates for optional feedback.
+Attach feedback to the one assessment row that exposes the misconception, and omit it when
+the failure does not support a useful, distinct diagnosis. Formative feedback may identify a
+next check; summative feedback identifies only the unmet requirement or misconception.
 
 ## Description Pattern
 

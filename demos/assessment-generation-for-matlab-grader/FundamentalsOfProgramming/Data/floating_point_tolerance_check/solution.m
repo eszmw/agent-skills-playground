@@ -1,11 +1,10 @@
 % Given values
-firstAddend = 0.1;
-secondAddend = 0.2;
-expectedSum = 0.3;
-tolerance = 1e-12;
+largeValue = 1e308;
+tinyValue = 1e-321;
+scaleFactor = 1000;
+finalFactor = 1e16;
 
-% Compare exact and tolerance-based results
-computedSum = firstAddend + secondAddend;
-difference = computedSum - expectedSum;
-exactMatch = isequal(computedSum, expectedSum);
-isWithinTolerance = abs(difference) < tolerance;
+% Evaluate equivalent expressions in two operation orders
+multiplyThenDivide = (largeValue * tinyValue / scaleFactor) * finalFactor;
+divideThenMultiply = (tinyValue / scaleFactor * largeValue) * finalFactor;
+resultDifference = multiplyThenDivide - divideThenMultiply;

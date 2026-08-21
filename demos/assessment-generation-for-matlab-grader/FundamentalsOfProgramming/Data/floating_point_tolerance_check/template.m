@@ -1,8 +1,8 @@
 % Given values (do not change)
-firstAddend = 0.1;
-secondAddend = 0.2;
-expectedSum = 0.3;
-tolerance = 1e-12;
+largeValue = 1e308;
+tinyValue = 1e-321;
+scaleFactor = 1000;
+finalFactor = 1e16;
 
-% Compare exact and tolerance-based results
+% Evaluate equivalent expressions in two operation orders
 % YOUR CODE HERE

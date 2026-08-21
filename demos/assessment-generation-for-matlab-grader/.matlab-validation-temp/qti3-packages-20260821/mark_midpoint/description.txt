@@ -1,0 +1,7 @@
+Write a function named `markMidpoint` with this signature:
+
+```matlab
+midpoint = markMidpoint(endpoint1, endpoint2)
+```
+
+Each input is a two-element numeric vector representing a planar point. Return the midpoint as a two-element vector. Also add a filled yellow circle at that midpoint to the current axes. Preserve any existing plot so the marker can be added to it.
