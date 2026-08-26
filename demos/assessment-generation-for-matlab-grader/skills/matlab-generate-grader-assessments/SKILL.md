@@ -23,7 +23,7 @@ Read these files before generating:
 - `references/description-prompt.md`, `solution-prompt.md`, `template-prompt.md`, and `function-call-prompt.md` as applicable.
 - `references/tests-prompt.md` for the Grader assessment model.
 - `references/qti3-prompt.md` only if the course profile enables QTI.
-- `references/all-grader-problems-template.md` only if the user selects combined single-file output.
+- `references/all-grader-items-template.md` only if the user selects combined single-file output.
 
 MATLAB MCP is mandatory. Confirm that a working MATLAB MCP session can run a small MATLAB command before proposing or generating an item. If it cannot, stop and say that generation is blocked; do not claim that code or assessments have been validated.
 
@@ -68,10 +68,10 @@ For each objective, present exactly one recommended title and task statement. Ti
 
 ## Combined single-file output
 
-After the requested item proposals are approved and before generating artifacts, ask once per batch whether the user wants a combined `AllGraderProblems.md` output. Do not ask again when the user has already explicitly requested or declined it.
+After the requested item proposals are approved and before generating artifacts, ask once per batch whether the user wants a combined `AllGraderItems.md` output. Do not ask again when the user has already explicitly requested or declined it.
 
-- If the user selects combined output, read `references/all-grader-problems-template.md` and create `AllGraderProblems.md` in the profile output location.
-- The file is an instructor-facing companion, not a replacement for the native item folders. Include each generated item’s title, student description, submission type, reference solution, learner template, Function call block when applicable, assessment setup, and only optional feedback entries supported by validated incorrect variants.
+- If the user selects combined output, read `references/all-grader-items-template.md` and create `AllGraderItems.md` in the profile output location.
+- The file is an instructor-facing companion, not a replacement for the native item folders. Include each generated item’s title, student description, submission type, reference solution, learner template, assessment setup, and only optional feedback entries supported by validated incorrect variants. When the reference solution is a Function, also include the standard field **How to call the function (when the learner clicks 'Run')** containing the `function_call.m` content.
 - If the user declines combined output, generate only the native item folders and their enabled QTI companions.
 
 ## Generate the native artifacts
@@ -84,7 +84,7 @@ Create one folder named with a snake_case title under the profile output locatio
 - Keep description and template requirements consistent with the solution.
 - For **summative** items, descriptions must contain no hints, self-checks, suggested functions, solution approaches, or answer-revealing implementation guidance. State a function, construct, or approach directly in the numbered instructions only when the learning objective explicitly requires it.
 - For **formative** items, a brief non-answer-revealing self-check is allowed. For **both**, include only the formative guidance explicitly approved for revision use and do not reveal summative assessment details.
-- For Function items, create `function_call.m` as a short student-facing call block with representative inputs and no assertions.
+- For Function items, create `function_call.m` as a short student-facing call block with representative inputs and no assertions. In combined single-file output, present this block under **How to call the function (when the learner clicks 'Run')**.
 - Create QTI 3 as an optional companion only when enabled by the profile. It preserves native artifacts but does not execute MATLAB Grader logic in a generic QTI player.
 
 ### MATLAB Grader assessment model
@@ -96,10 +96,12 @@ Create one folder named with a snake_case title under the profile output locatio
 
 Use these test types precisely:
 
-- **Variable equals reference solution** for direct output equality. Put the student variable or expression in the relevant UI field; do not recreate expected logic in code.
-- **MATLAB Code** only for custom checks that direct equality cannot express. Derive expected values from `referenceVariables.<name>`; never recreate reference-solution logic. For class-sensitive results, compare the student class with `class(referenceVariables.<name>)`, never a hard-coded class literal.
+- **Variable equals reference solution** only for direct equality of exactly one student variable in a Script submission. Put that single variable in the relevant UI field; do not recreate expected logic in code. Do not use this test type for Function submissions.
+- **MATLAB Code** for custom checks that direct equality cannot express, including one assessment that compares multiple student variables and every Function-submission output check. A Function assessment must be self-contained: assign its test inputs, call the learner function, call the matching reference function through `reference.<functionName>`, then compare the learner output with `assessVariableEqual`. For example, `greeting = greetUser(name); greetingReference = reference.greetUser(name); assessVariableEqual('greeting', greetingReference);`. Never recreate reference-solution logic or assume that `function_call.m` variables or `referenceVariables` exist in the assessment workspace. For class-sensitive results, compare the learner class with `class(reference.<functionName>(...))`, never a hard-coded class literal.
 - **Function or Keyword is present** only when the objective explicitly requires that named construct.
-- **Function or Keyword is absent** only when the item explicitly requires implementation rather than a named prohibited shortcut.
+- **Function or Keyword is absent** only when the objective explicitly requires implementation rather than a named prohibited shortcut.
+
+For Script submissions, **Variable equals reference solution** passes a learner value within ±0.1% relative tolerance or ±0.0001 absolute tolerance of the reference value. Use this default for ordinary numeric comparisons, including floating-point roundoff. To override either tolerance, configure the assessment as **MATLAB Code** and call `assessVariableEqual` with `RelativeTolerance` or `AbsoluteTolerance`.
 
 For every configured assessment, provide a concise learner-visible assessment name in its MATLAB Grader UI fields. An assessment name for a **Function or Keyword is present** or **Function or Keyword is absent** row must describe the behavior being assessed and must not include the command or keyword checked by that row. Put the checked command or keyword only in the relevant configuration field.
 
@@ -109,7 +111,7 @@ Fail generation when the description, template, solution, stated requirements, a
 
 ### Optional feedback on incorrect submissions
 
-During problem development, create and validate targeted incorrect variants for plausible conceptual or syntactic mistakes. For each distinct assessment row, generate feedback only when a validated variant reveals a useful misconception. Do not add generic or duplicate feedback merely to fill every row.
+During item development, create and validate targeted incorrect variants for plausible conceptual or syntactic mistakes. For each distinct assessment row, generate feedback only when a validated variant reveals a useful misconception. Do not add generic or duplicate feedback merely to fill every row.
 
 - For **formative** items, feedback identifies the failed requirement and a productive next check. A guided correction is allowed when it is educationally useful.
 - For **summative** items, feedback is diagnosis only: identify the unmet requirement or misconception without code, expected values, solution steps, or hidden-test details.
@@ -127,7 +129,7 @@ Before marking output ready:
 
 ## Output summary
 
-For each item, report its title, approved complexity, folder, files, number and type of configured assessments, number of optional feedback entries, and the completed MATLAB MCP validation result. When created, also report the path to `AllGraderProblems.md`. Never claim validation when MATLAB MCP did not complete.
+For each item, report its title, approved complexity, folder, files, number and type of configured assessments, number of optional feedback entries, and the completed MATLAB MCP validation result. When created, also report the path to `AllGraderItems.md`. Never claim validation when MATLAB MCP did not complete.
 
 ## Credits
 

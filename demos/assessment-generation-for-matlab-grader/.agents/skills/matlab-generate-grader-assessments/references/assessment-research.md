@@ -95,9 +95,9 @@ Use MATLAB Grader-friendly checks:
 
 For each requirement, create one distinct, objective-aligned MATLAB Grader assessment:
 
-1. Use Variable equals reference solution for direct output equality.
+1. Use Variable equals reference solution only for direct equality of one Script-submission workspace variable.
 2. Add a transfer, shape, type, or contract check only when it measures separate evidence.
-3. Use MATLAB Code only when direct equality cannot express the required check; derive expectations from `referenceVariables`.
+3. Use MATLAB Code for every Function-submission output check. Assign test inputs, invoke the learner function and `reference.<functionName>` with those inputs, and compare the outputs with `assessVariableEqual`. For Script-only custom checks, derive expectations from `referenceVariables`.
 4. Add Function or Keyword present/absent only when the objective explicitly requires or prohibits a named construct.
 
 Do not use fixed test counts. Avoid redundant checks that fail for the same reason.

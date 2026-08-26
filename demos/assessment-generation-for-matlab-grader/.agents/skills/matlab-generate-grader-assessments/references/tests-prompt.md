@@ -2,7 +2,9 @@
 
 Create `assessments.md`, not a padded test script. Start with a requirement-to-assessment matrix, then include exact MATLAB Grader setup directions for every row. Add an `Optional feedback on incorrect submission` column. Use `—` when no feedback is warranted; otherwise provide feedback tied to a validated incorrect variant.
 
-Use **Variable equals reference solution** for ordinary output equality. Use **MATLAB Code** only for a custom property that direct reference equality cannot check. Its code must obtain expected values from `referenceVariables.<name>`; it must not reproduce the solution algorithm. When class matters, compare to `class(referenceVariables.<name>)`.
+Use **Variable equals reference solution** only for ordinary equality of one student variable in a Script submission. It cannot compare a vector, expression, or list of multiple variables, and it is not available for Function submissions. Use **MATLAB Code** for a custom property that direct reference equality cannot check, whenever one assessment must compare multiple student variables, and for every Function-submission output check. Each Function assessment must assign its inputs, call both the learner function and its `reference.<functionName>` counterpart, then call `assessVariableEqual` on the learner output and reference output. Do not assume `function_call.m` variables or `referenceVariables` are available, and do not reproduce the solution algorithm. When class matters, compare to the class of the reference-function output.
+
+For Script submissions, **Variable equals reference solution** allows ±0.1% relative tolerance or ±0.0001 absolute tolerance between the learner and reference values. Use **MATLAB Code** with `assessVariableEqual` and its `RelativeTolerance` or `AbsoluteTolerance` parameter to override that default.
 
 Use **Function or Keyword is present** only for an explicitly required named construct. Use **Function or Keyword is absent** only for an explicitly prohibited shortcut. Do not add construct tests merely to make a suite longer.
 

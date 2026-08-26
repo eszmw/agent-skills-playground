@@ -5,8 +5,8 @@ This reference defines how to generate `function_call.m` for Function assessment
 ## Purpose
 
 MATLAB Grader Function assessment items include a student-facing block used to run the submitted
-function before submitting. This file represents the MATLAB Grader "Code to call your function"
-area in the authoring workflow.
+function before submitting. This file represents the MATLAB Grader field **How to call the
+function (when the learner clicks 'Run')** in the authoring workflow and combined single-file output.
 
 Generate this file only for assessment item type Function.
 

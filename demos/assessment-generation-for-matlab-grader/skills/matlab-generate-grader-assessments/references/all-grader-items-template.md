@@ -1,13 +1,13 @@
-# MATLAB Grader problem collection
+# MATLAB Grader item collection
 
-This collection contains the MATLAB Grader problems generated for this batch. For every problem, paste the description, reference solution, learner template, Function call block when present, and listed tests into MATLAB Grader. Paste optional feedback only where it is shown.
+This collection contains the MATLAB Grader items generated for this batch. For every item, paste the description, reference solution, learner template, Function call block when present, and listed tests into MATLAB Grader. Paste optional feedback only where it is shown.
 
 ***
-# Problem 1
+# Item 1
 
 Title: 
 ```Copy
-Problem Title
+Item Title
 ```
 
 
@@ -31,6 +31,11 @@ solution.m content
 Learner Template:
 ```Copy
 template.m content
+```
+
+How to call the function (when the learner clicks 'Run') [Function reference solutions only]:
+```Copy
+function_call.m content
 ```
 
 ## Tests
