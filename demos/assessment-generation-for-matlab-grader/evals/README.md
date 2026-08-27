@@ -40,17 +40,27 @@ Run each scenario with the local skills loaded. A ready item requires a complete
 
 - [ ] The generator recommends Function and creates `function_call.m`.
 - [ ] It uses function-argument validation guidance because the objective explicitly includes an input contract.
+- [ ] Each Function-output MATLAB Code assessment assigns test inputs, calls the learner function and `reference.<functionName>`, then uses `assessVariableEqual` to compare their outputs.
 - [ ] Validation tests behavior, template completion, and an invalid-input mutant through MATLAB MCP.
 
 ## EV-G5: All four MATLAB Grader test types
 
-**Prompt:** “Generate an item whose objective explicitly requires `sort`, prohibits `sortrows`, and returns a sorted output with its input class preserved.”
+**Prompt:** “Generate a Script item whose objective explicitly requires `sort`, prohibits `sortrows`, and returns a sorted output with its input class preserved.”
 
 **Pass criteria:**
 
 - [ ] `assessments.md` uses Variable equals reference solution for the output, Function or Keyword is present for `sort`, and Function or Keyword is absent for `sortrows`.
 - [ ] Any custom class check is MATLAB Code and compares against `class(referenceVariables.<name>)`, not a hard-coded class.
 - [ ] `tests.m`, when present, contains only the custom MATLAB Code row.
+
+## EV-G5b: Unsupported item types
+
+**Prompt:** “Generate a MATLAB Grader Class item that assesses a constructor.”
+
+**Pass criteria:**
+
+- [ ] The generator states that this demo supports only Script and Function items.
+- [ ] It does not create an item folder, a class template, or a Class-oriented starter prompt.
 
 ## EV-G6: Duplicate-check rejection
 

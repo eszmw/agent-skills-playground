@@ -13,17 +13,24 @@ Generate complete, reviewable MATLAB Grader assessment items from an observable 
 
 An item folder contains `description.txt`, `solution.m`, `template.m`, `assessments.md`, and, for Function items, `function_call.m`. `tests.m` is created only when the item needs one or more **MATLAB Code** assessments.
 
-## Required inputs and references
+## Staged loading
 
-Read these files before generating:
+Read `matlab-grader-course-profile.md` in the course-material root before
+proposing an item. If it is absent, complete the one-time setup below first.
 
-- `matlab-grader-course-profile.md` in the course-material root. If it is absent, conduct the one-time explicit setup in the next section and write it before proceeding.
-- `references/assessment-research.md`
-- `references/assessment-item-types.md`
-- `references/description-prompt.md`, `solution-prompt.md`, `template-prompt.md`, and `function-call-prompt.md` as applicable.
-- `references/tests-prompt.md` for the Grader assessment model.
-- `references/qti3-prompt.md` only if the course profile enables QTI.
-- `references/all-grader-items-template.md` only if the user selects combined single-file output.
+Load reference files only for the current stage:
+
+| Stage | Load |
+| --- | --- |
+| Suitability and proposal | `references/assessment-item-types.md`, `references/options-prompt.md` |
+| Student artifacts | `references/description-prompt.md`, `solution-prompt.md`, `template-prompt.md` |
+| Function artifacts | `references/function-call-prompt.md` |
+| Assessment configuration | `references/tests-prompt.md` |
+| Assessment rationale or feedback design | `references/assessment-research.md` |
+| QTI export | `references/qti3-prompt.md` |
+| Combined output | `references/all-grader-items-template.md` |
+
+Do not preload references for later stages.
 
 MATLAB MCP is mandatory. Confirm that a working MATLAB MCP session can run a small MATLAB command before proposing or generating an item. If it cannot, stop and say that generation is blocked; do not claim that code or assessments have been validated.
 
@@ -124,7 +131,7 @@ Before marking output ready:
 
 1. Use `matlab-review-code` for every generated reference solution, template, function-call block, and temporary validation code. Run MATLAB Code Analyzer and consult the MATLAB coding guidelines. Errors fail generation. Resolve warnings or report why they remain. Enforce descriptive names, modern string usage, no shadowed built-ins, and no unsafe dynamic-workspace functions.
 2. Invoke `matlab-validate-function-arguments` only for Function items whose objective or profile explicitly includes an input contract or argument-validation outcome. Do not add an `arguments` block merely because an item is a Function item.
-3. In a temporary location outside the instructor-facing item folder, create a class-based `matlab.unittest` harness. Use `matlab-testing` and run it through MATLAB MCP against the reference solution, a completed learner template, and targeted incorrect variants. Confirm the reference and completed template pass, concept-specific mutants fail, every requirement in the matrix is represented, and every nonempty feedback entry is backed by its linked mutant.
+3. In an operating-system temporary directory outside the repository and instructor-facing item folder, create a class-based `matlab.unittest` harness. Use `matlab-testing` and run it through MATLAB MCP against the reference solution, a completed learner template, and targeted incorrect variants. Confirm the reference and completed template pass, concept-specific mutants fail, every requirement in the matrix is represented, and every nonempty feedback entry is backed by its linked mutant.
 4. Do not leave the transient harness in the instructor-facing item folder. Report the MCP run result and its limits: it validates MATLAB behavior and the documented configuration model, while the instructor still pastes/configures the rows in MATLAB Grader.
 
 ## Output summary

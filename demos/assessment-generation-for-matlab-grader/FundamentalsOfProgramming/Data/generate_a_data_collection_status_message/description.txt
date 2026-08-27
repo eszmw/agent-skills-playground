@@ -1,8 +1,0 @@
-Create a MATLAB script that communicates the collection status for three data sets.
-
-1. Leave all provided variables unchanged.
-2. Create `tempStatusMessage` using `tempDataSetName` and `tempCount`.
-3. Create `humidityStatusMessage` using `humidityDataSetName` and `humidityCount`.
-4. Create `pressureStatusMessage` using `pressureDataSetName` and `pressureCount`.
-5. Use conditional logic to select `measurement` when a data set has one measurement and `measurements` otherwise.
-6. Each message must read as `Name: count measurement collected.` or `Name: count measurements collected.`, as appropriate for its supplied count.

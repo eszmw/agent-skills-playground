@@ -1,5 +1,0 @@
-Create a MATLAB script that compares two supplied floating-point values using a supplied tolerance.
-
-1. Leave the provided values unchanged.
-2. Create `absoluteDifference` as the absolute difference between `firstValue` and `secondValue`.
-3. Create the logical scalar `areEquivalent` that is true when `absoluteDifference` is less than `tolerance`.

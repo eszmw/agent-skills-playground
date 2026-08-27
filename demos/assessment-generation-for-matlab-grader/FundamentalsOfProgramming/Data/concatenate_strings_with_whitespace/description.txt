@@ -1,6 +1,0 @@
-Create a MATLAB script that joins supplied text values with one space between them.
-
-1. Leave the provided string values unchanged.
-2. Create `combinedText` from `firstText` and `secondText`.
-3. Create `alternateCombinedText` from `alternateFirstText` and `alternateSecondText`.
-4. Each result must contain exactly one space between its two supplied text values.

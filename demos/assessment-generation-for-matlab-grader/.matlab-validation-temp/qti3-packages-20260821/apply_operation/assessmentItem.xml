@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<qti-assessment-item xmlns="http://www.imsglobal.org/xsd/imsqtiasi_v3p0" identifier="apply_operation" title="Apply an operation" adaptive="false" time-dependent="false">
-  <qti-outcome-declaration identifier="SCORE" cardinality="single" base-type="float"/>
-  <qti-item-body>
-    <qti-rubric-block view="author">Native MATLAB Grader artifacts are packaged alongside this companion. A generic QTI runtime does not execute its MATLAB code or assessments.</qti-rubric-block>
-  </qti-item-body>
-</qti-assessment-item>

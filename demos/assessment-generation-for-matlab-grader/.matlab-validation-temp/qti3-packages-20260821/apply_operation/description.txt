@@ -1,7 +1,0 @@
-Write a function named `applyOperation` with this signature:
-
-```matlab
-transformedValues = applyOperation(operation, values)
-```
-
-`operation` is a function handle and `values` is a numeric array. Evaluate the supplied function handle using `values` and return the result in `transformedValues`.

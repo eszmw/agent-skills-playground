@@ -40,7 +40,7 @@ vague to identify an assessment goal.
 
 1. Restate the inferred learning objective or assessment goal.
 2. Identify the best-fit assessment context and why it fits.
-3. Recommend an assessment item type: Script, Function, Class, or Object usage.
+3. Recommend an assessment item type: Script or Function.
 4. Recommend assessment purpose: formative, summative, or both.
    When the context mapping has a purpose emphasis, use it.
    Otherwise default to summative for graded or unspecified use, and both when
@@ -52,6 +52,10 @@ vague to identify an assessment goal.
 8. Propose a first pilot with one generated item, one review pass, and one
    revision loop.
 9. Include a concise instructor checklist.
+
+If the request requires a MATLAB class definition or object-usage submission,
+state that this demo supports only Script and Function items. Do not generate a
+starter prompt that implies unsupported Class or Object-usage generation.
 
 Read [references/setup-guide-template.md](references/setup-guide-template.md)
 for context mapping, output format, prompt patterns, and adaptation rules.

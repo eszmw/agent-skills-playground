@@ -1,5 +1,0 @@
-Write a script that estimates the integral of a supplied function.
-
-The variable `integrand` is provided. Create `integralEstimate` by integrating `integrand` from 0 to pi. Consult the documentation for `integral` to determine how to specify an absolute tolerance of `1e-9` using its optional inputs.
-
-Before you submit, use the documentation to check that the option name and its value are accepted by `integral`.
