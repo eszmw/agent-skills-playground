@@ -73,16 +73,13 @@ Before an item is ready, the workflow:
 
 This confirms MATLAB behavior and the documented Grader configuration model. It does not replace the instructor’s final paste/configuration and preview in MATLAB Grader. Function argument-validation guidance is used only when an objective explicitly includes an input-contract outcome; introductory functions do not receive an `arguments` block by default.
 
-## Example course materials
+## Examples
 
-[`FundamentalsOfProgramming/Data/`](FundamentalsOfProgramming/Data/) contains eight summative Script items:
+[`examples/compute_calculator_expressions/`](examples/compute_calculator_expressions/) is a packaged Script item. It shows a script-style task, reference solution, learner template, `assessments.md`, and MATLAB Code tests.
 
-- Floating-point limitations: `compare_floating_point_values_with_tolerance` (low) and `floating_point_tolerance_check` (moderate).
-- Textual strings: `create_a_student_welcome_message` (low) and `generate_a_data_collection_status_message` (moderate).
-- Whitespace in strings: `concatenate_strings_with_whitespace` (low) and `build_a_multiline_event_notice` (moderate).
-- Special values: `generate_and_identify_special_values` (low) and `classify_special_value_arithmetic` (moderate).
+[`examples/greet_user/`](examples/greet_user/) is a packaged Function item. It includes the same native MATLAB Grader artifacts plus `function_call.m` for the **How to call the function (when the learner clicks 'Run')** field.
 
-The profile allows high complexity for floating-point and special-value objectives only. Standalone strings and whitespace objectives support low and moderate complexity.
+[`examples/AllGraderItems.md`](examples/AllGraderItems.md) demonstrates the optional combined instructor-facing summary page for those two examples. The native item folders remain the authoritative artifact layout.
 
 ## Evals
 
