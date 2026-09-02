@@ -56,8 +56,11 @@ def main() -> int:
     evals = normalized_text(ROOT / "evals" / "README.md")
 
     require(
-        "supports only **Script** and **Function** submissions" in generator_skill,
-        "The generator scope must remain Script and Function only.",
+        "Class Definition" in generator_skill
+        and "Class Inheritance" in generator_skill
+        and "Object Usage" in generator_skill
+        and "Class Methods" in generator_skill,
+        "The generator must document class definition, inheritance, object usage, and method support.",
         errors,
     )
     require(
@@ -66,13 +69,35 @@ def main() -> int:
         errors,
     )
     require(
-        "Script or Function" in adoption_skill,
-        "The adoption skill must recommend only Script or Function items.",
+        "Class Definition" in adoption_skill
+        and "Class Inheritance" in adoption_skill
+        and "Object Usage" in adoption_skill
+        and "Class Methods" in adoption_skill,
+        "The adoption skill must recommend the supported class-related item modes.",
         errors,
     )
     require(
-        "unsupported Class or Object-usage generation" in adoption_skill,
-        "The adoption skill must reject unsupported item types.",
+        "plain `.m` files" in generator_skill and "plain `.m`" in readme and "plain `.m`" in evals,
+        "Classdef documentation must warn that learner-authored class definitions require plain .m files.",
+        errors,
+    )
+    require(
+        "Do not create `.p` files" in generator_skill
+        and "does not create `.p` files" in readme
+        and "does not create `.p` files" in evals,
+        "Documentation must state that generated files remain readable and .p files are not created.",
+        errors,
+    )
+    require(
+        "referenced files" in generator_skill.lower()
+        and "referenced file" in readme.lower()
+        and "referenced file" in evals.lower(),
+        "Referenced-file guidance must be documented.",
+        errors,
+    )
+    require(
+        "abstract" in generator_skill.lower() and "abstract" in evals.lower(),
+        "Abstract class boundary and referenced-superclass support must be documented.",
         errors,
     )
     require(

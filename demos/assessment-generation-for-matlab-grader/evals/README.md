@@ -53,14 +53,57 @@ Run each scenario with the local skills loaded. A ready item requires a complete
 - [ ] Any custom class check is MATLAB Code and compares against `class(referenceVariables.<name>)`, not a hard-coded class.
 - [ ] `tests.m`, when present, contains only the custom MATLAB Code row.
 
-## EV-G5b: Unsupported item types
+## EV-G5b: Class Definition item
 
-**Prompt:** “Generate a MATLAB Grader Class item that assesses a constructor.”
+**Prompt:** “Generate a MATLAB Grader Class Definition item for `TimeSignalClass` with properties `time`, `timeUnit`, `data`, `dataUnit`, `description`, and `signalName`, and constructor defaults of `[]` for numeric vectors and `''` for text properties.”
 
 **Pass criteria:**
 
-- [ ] The generator states that this demo supports only Script and Function items.
-- [ ] It does not create an item folder, a class template, or a Class-oriented starter prompt.
+- [ ] The generator warns that learner-authored `classdef` files must be plain `.m` files, not Live Script `.m` or `.mlx` files.
+- [ ] The item is documented as Class Definition while using MATLAB Grader's Function-style run workflow.
+- [ ] `function_call.m` constructs `obj = TimeSignalClass`.
+- [ ] MATLAB Code assessments check value-class behavior, constructor presence, required public properties, and constructor defaults.
+
+## EV-G5c: Object Usage with referenced class
+
+**Prompt:** “Generate a Script item where learners instantiate referenced `TimeSignalClass.m`, create `sigObj1`, set signal metadata/time/data properties, copy it to `sigObj2`, change only `sigObj2.signalName`, and use `whos`.”
+
+**Pass criteria:**
+
+- [ ] The generator treats `TimeSignalClass.m` as a MATLAB Grader Referenced File.
+- [ ] The item remains a Script submission and does not create `function_call.m`.
+- [ ] MATLAB Code assessments check `sigObj1` and `sigObj2` existence/classes and all required property values using `referenceVariables`.
+- [ ] A Function or Keyword is Present row checks `whos` only because the prompt explicitly requires it.
+
+## EV-G5d: Class Inheritance from abstract referenced superclass
+
+**Prompt:** “Generate a Function-style class item where learners create concrete `FrequencySignalClass < SignalClass`; `SignalClass.m` is an abstract referenced superclass and `FrequencySignalClass` adds `frequency` and `frequencyUnit`.”
+
+**Pass criteria:**
+
+- [ ] The generator accepts the abstract superclass as a referenced file.
+- [ ] The learner-submitted `FrequencySignalClass` remains concrete and is instantiated in the run block.
+- [ ] MATLAB Code assessments check inheritance from `SignalClass` and `handle`, and check inherited plus added properties.
+
+## EV-G5e: Class Methods with readable referenced helper
+
+**Prompt:** “Generate a class-method item where learners implement `TimeSignalClass < SignalClass`, keep `importFileData`, and implement `resample`; referenced files include `SignalClass.m`, `MeasurementXYZ.mat`, and `constructor_pretest.m`.”
+
+**Pass criteria:**
+
+- [ ] The generator documents all referenced files and does not create `.p` files.
+- [ ] If hidden helper logic is desired, the setup notes say educators may manually pcode a reviewed `.m` helper before upload.
+- [ ] MATLAB Code assessments check inheritance, properties, constructor helper behavior, and `resample` behavior at multiple time grids by comparing learner and reference object state.
+
+## EV-G5f: Unsupported abstract submitted class
+
+**Prompt:** “Generate a MATLAB Grader item where learners submit an abstract class and the tests instantiate that class.”
+
+**Pass criteria:**
+
+- [ ] The generator stops before artifact generation.
+- [ ] It explains that direct abstract-class creation cannot be tested by instantiation in MATLAB Grader.
+- [ ] It recommends assessing a concrete subclass, object-usage task, manual review, or design rubric instead.
 
 ## EV-G6: Duplicate-check rejection
 

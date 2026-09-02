@@ -1,6 +1,6 @@
 # MATLAB Grader assessment generation
 
-This demo generates MATLAB Grader assessment items from learning objectives that have observable MATLAB-code evidence. The workflow is profile-driven, uses only Script and Function submissions, and requires a working MATLAB MCP session for generation preflight and validation.
+This demo generates MATLAB Grader assessment items from learning objectives that have observable MATLAB-code evidence. The workflow is profile-driven, supports Script, Function, Class Definition, Class Inheritance, Object Usage, and Class Methods items, and requires a working MATLAB MCP session for generation preflight and validation.
 
 ## Prerequisites
 
@@ -12,7 +12,9 @@ This demo generates MATLAB Grader assessment items from learning objectives that
 
 [`matlab-grader-course-profile.md`](matlab-grader-course-profile.md) is the committed, versioned source of reusable defaults: output location, purpose, QTI preference, MCP requirement, coding-practice guidance, and the allowed `low`, `moderate`, and `high` complexity levels for each objective.
 
-On first use, the generator conducts explicit setup for missing profile values. It never asks an instructor to press Enter for a default. On later uses it reads the profile, first evaluates whether the objective has observable code evidence, and then recommends Script or Function with a rationale. If the objective is unsuitable, it stops with an assessable rewording or a better assessment modality. If the requested complexity is unsupported, it reports that rather than adding unrelated difficulty.
+On first use, the generator conducts explicit setup for missing profile values. It never asks an instructor to press Enter for a default. On later uses it reads the profile, first evaluates whether the objective has observable code evidence, and then recommends Script, Function, or the appropriate class-related item mode with a rationale. If the objective is unsuitable, it stops with an assessable rewording or a better assessment modality. If the requested complexity is unsupported, it reports that rather than adding unrelated difficulty.
+
+Learner-authored `classdef` submissions must be plain `.m` files, not Live Script `.m` or `.mlx` files. Abstract classes may be used as referenced superclasses, but directly assessing a learner-authored abstract class is not supported when the assessment would need to instantiate it.
 
 The generator proposes one titled task and task statement per objective. The only follow-up is approval or revision, plus a complexity decision if the profile does not already specify one. “Both” is explained only when selected: the item is designed for formative revision and later summative use.
 
@@ -25,12 +27,15 @@ Each item has the following instructor-facing files:
 | `description.txt` | Assessment Item Description & Instructions |
 | `solution.m` | Reference Solution |
 | `template.m` | Learner Template |
-| `function_call.m` | Code to call your function, for Function items only |
+| `function_call.m` | Code to run a Function or class-submission item |
 | `assessments.md` | Authoritative setup guide and requirement-to-assessment matrix |
 | `tests.m` | Only for rows configured as MATLAB Code assessments |
+| `referenced_files/` | Optional readable referenced `.m` files and data files such as `.mat` |
 | `qti3/` | Optional companion interchange package |
 
 `assessments.md` has one row per assessment. It identifies the Grader Test Type, exact UI fields, any code to paste, expected evidence, optional feedback on incorrect submissions, and learning-objective traceability.
+
+Generated referenced helper code must remain human-readable `.m` files. Every referenced file must be listed in the setup instructions. The generator does not create `.p` files. Educators who need hidden helper logic may manually pcode reviewed helper `.m` files before uploading them to MATLAB Grader.
 
 ## Configuring MATLAB Grader
 
@@ -40,7 +45,10 @@ For each row in `assessments.md`, select the listed test type and enter its UI f
 - **MATLAB Code**: for Script items, derive custom expected values from
   `referenceVariables.<name>`. For Function items, assign test inputs, call
   both the learner function and `reference.<functionName>`, then compare their
-  outputs with `assessVariableEqual`. This avoids recreating reference logic.
+  outputs with `assessVariableEqual`. For class-submission items, instantiate
+  the learner class and `reference.<ClassName>` when needed, then compare
+  `superclasses`, `properties`, `methods`, constructor defaults, or method-updated
+  object state. This avoids recreating reference logic.
 - **Function or Keyword is present**: use only when the objective explicitly requires the named construct.
 - **Function or Keyword is absent**: use only when the item explicitly requires an implementation rather than a named prohibited shortcut.
 
@@ -81,8 +89,8 @@ The profile allows high complexity for floating-point and special-value objectiv
 [`evals/README.md`](evals/README.md) contains scenario-based checks, including unsuitable objectives, profile reuse, infeasible complexity, all four MATLAB Grader test types, reference-based custom checks, duplicate rejection, quality gates, and MCP failures.
 
 Run `python scripts/validate_skill_layout.py` to verify source/install parity,
-Script-and-Function-only scope, staged reference loading, and current Function
-assessment guidance.
+class-related scope, staged reference loading, readable referenced-file guidance,
+and current Function assessment guidance.
 
 ## Selected Sources
 

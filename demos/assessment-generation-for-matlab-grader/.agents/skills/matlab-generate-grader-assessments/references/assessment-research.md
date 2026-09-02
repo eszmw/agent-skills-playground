@@ -80,6 +80,12 @@ Choose evidence based on assessment item type:
 | --- | --- | --- |
 | Script | Workspace variables: existence, class, size, value, tolerance | Required or prohibited functions when objective-specific |
 | Function | Return values across scalar, vector, matrix, and edge inputs | Input validation behavior when required |
+| Class Definition | Concrete class instantiation, public properties, methods, constructor defaults | Value vs handle behavior, superclass list |
+| Class Inheritance | Concrete subclass instantiation, required superclass membership, inherited and added properties | Referenced abstract superclass behavior |
+| Object Usage | Objects created from referenced classes, object property values, value/copy behavior | Required commands such as `whos` |
+| Class Methods | Object state after method calls and referenced-file setup | Constructor/helper pretests, multiple input scenarios |
+
+Learner-authored `classdef` files must be plain `.m` files, not Live Script `.m` or `.mlx` files. Abstract classes may be referenced superclasses, but a learner-submitted abstract class should not be generated as an auto-graded item when the tests must instantiate it.
 
 Use MATLAB Grader-friendly checks:
 
@@ -98,7 +104,9 @@ For each requirement, create one distinct, objective-aligned MATLAB Grader asses
 1. Use Variable equals reference solution only for direct equality of one Script-submission workspace variable.
 2. Add a transfer, shape, type, or contract check only when it measures separate evidence.
 3. Use MATLAB Code for every Function-submission output check. Assign test inputs, invoke the learner function and `reference.<functionName>` with those inputs, and compare the outputs with `assessVariableEqual`. For Script-only custom checks, derive expectations from `referenceVariables`.
-4. Add Function or Keyword present/absent only when the objective explicitly requires or prohibits a named construct.
+4. Use MATLAB Code for class-submission checks. Instantiate learner and reference objects when concrete and compare observable `superclasses`, `properties`, `methods`, constructor defaults, or method-updated state.
+5. For Object Usage Script items, compare learner-created object properties against `referenceVariables` and use whole-variable equality only when one object variable is the direct intended evidence.
+6. Add Function or Keyword present/absent only when the objective explicitly requires or prohibits a named construct.
 
 Do not use fixed test counts. Avoid redundant checks that fail for the same reason.
 

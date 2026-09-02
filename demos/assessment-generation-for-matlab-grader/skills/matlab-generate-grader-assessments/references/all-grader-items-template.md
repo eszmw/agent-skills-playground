@@ -1,6 +1,6 @@
 # MATLAB Grader item collection
 
-This collection contains the MATLAB Grader items generated for this batch. For every item, paste the description, reference solution, learner template, Function call block when present, and listed tests into MATLAB Grader. Paste optional feedback only where it is shown.
+This collection contains the MATLAB Grader items generated for this batch. For every item, paste the description, reference solution, learner template, run/call block when present, referenced-file instructions, and listed tests into MATLAB Grader. Paste optional feedback only where it is shown.
 
 ***
 # Item 1
@@ -21,7 +21,7 @@ Files Referenced: [if needed]
 path to file, repeat block as needed with more files
 ```
 
-Type:  **Script** or **Function**
+Type:  **Script**, **Function**, **Class Definition**, **Class Inheritance**, **Object Usage**, or **Class Methods**
 
 Reference Solution:
 ```Copy
@@ -33,7 +33,7 @@ Learner Template:
 template.m content
 ```
 
-How to call the function (when the learner clicks 'Run') [Function reference solutions only]:
+How to call the function (when the learner clicks 'Run') [Function and class-submission items only]:
 ```Copy
 function_call.m content
 ```
