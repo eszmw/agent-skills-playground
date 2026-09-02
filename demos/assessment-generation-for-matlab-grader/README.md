@@ -88,9 +88,10 @@ The profile allows high complexity for floating-point and special-value objectiv
 
 [`evals/README.md`](evals/README.md) contains scenario-based checks, including unsuitable objectives, profile reuse, infeasible complexity, all four MATLAB Grader test types, reference-based custom checks, duplicate rejection, quality gates, and MCP failures.
 
-Run `python scripts/validate_skill_layout.py` to verify source/install parity,
-class-related scope, staged reference loading, readable referenced-file guidance,
-and current Function assessment guidance.
+Before release, review the canonical skill files under `skills/`, the README, and
+the eval scenarios together to verify class-related scope, staged reference
+loading, readable referenced-file guidance, and current Function assessment
+guidance.
 
 ## Selected Sources
 
