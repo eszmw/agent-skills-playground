@@ -5,7 +5,7 @@ This demo generates MATLAB Grader assessment items from learning objectives that
 ## Prerequisites
 
 - An agent that can load the local skills and write course materials.
-- MATLAB with a connected MATLAB MCP session. The generator verifies code, templates, mutants, and assessment traceability through that session; it does not mark an item ready when MCP validation cannot run.
+- MATLAB with a connected [MATLAB MCP](https://github.com/matlab/matlab-mcp-server) session. The generator verifies code, templates, mutants, and assessment traceability through that session; it does not mark an item ready when MCP validation cannot run.
 - Access to [MATLAB Grader](https://www.mathworks.com/products/matlab-grader.html) to configure the completed item.
 
 ## Course profile and suitability gate
@@ -22,16 +22,17 @@ The generator proposes one titled task and task statement per objective. The onl
 
 Each item has the following instructor-facing files:
 
-| File | MATLAB Grader use |
-| --- | --- |
-| `description.txt` | Assessment Item Description & Instructions |
-| `solution.m` | Reference Solution |
-| `template.m` | Learner Template |
-| `function_call.m` | Code to run a Function or class-submission item |
-| `assessments.md` | Authoritative setup guide and requirement-to-assessment matrix |
-| `tests.m` | Only for rows configured as MATLAB Code assessments |
-| `referenced_files/` | Optional readable referenced `.m` files and data files such as `.mat` |
-| `qti3/` | Optional companion interchange package |
+| File                 | MATLAB Grader use                                                        |
+| ------------------- | ------------------------------------------------------------------------ |
+| `description.txt`    | Assessment Item Description & Instructions                               |
+| `solution.m`         | Reference Solution                                                       |
+| `template.m`         | Learner Template                                                         |
+| `function_call.m`    | Code to run a Function or class-submission item                          |
+| `assessments.md`     | Authoritative setup guide and requirement-to-assessment matrix           |
+| `tests.m`            | Only for rows configured as MATLAB Code assessments                      |
+| `referenced_files/`  | Optional readable referenced `.m` files and data files such as `.mat`    |
+|  `AllGraderItems.md` | Optional single markdown file presenting all elements and files in order |
+| `qti3/`              | Optional companion interchange package                                   |
 
 `assessments.md` has one row per assessment. It identifies the Grader Test Type, exact UI fields, any code to paste, expected evidence, optional feedback on incorrect submissions, and learning-objective traceability.
 
