@@ -48,7 +48,7 @@ vague to identify an assessment goal.
    the module serves practice first with grading reuse later.
 5. Recommend `content_language: auto` unless the instructor requests a specific language code.
 6. Provide an instructor-ready generation prompt for the `matlab-generate-grader-assessments` skill.
-7. Define review gates for `description.txt`, `solution.m`, `template.m`,
+7. Define review gates for `description.txt`, `description.html`, `solution.m`, `template.m`,
    template line locks documented in `assessments.md`,
    `function_call.m` when the recommended type is Function, and `tests.m`.
 8. Define QTI 3 export and sharing guidance when portability is requested.

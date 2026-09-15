@@ -1,6 +1,6 @@
 # MATLAB Grader item collection
 
-This collection contains the MATLAB Grader items generated for this batch. For every item, paste the description, reference solution, learner template, run/call block when present, referenced-file instructions, and listed tests into MATLAB Grader. Paste optional feedback only where it is shown.
+This collection contains the MATLAB Grader items generated for this batch. For every item, use the linked `description.html` page to copy the rendered rich-text description into MATLAB Grader. Then paste the reference solution, learner template, run/call block when present, referenced-file instructions, and listed tests into MATLAB Grader. Paste optional feedback only where it is shown.
 
 Preserve localized item content exactly as generated. Do not translate descriptions, code comments, learner-visible assessment names, or optional feedback when copying them into this collection.
 
@@ -14,9 +14,10 @@ Item Title
 
 
 Description and Instructions:
-```Copy
-description.txt content
-```
+Open [`description.html`](item_folder/description.html) in a browser, click
+**Copy Description for MATLAB Grader**, and paste into the MATLAB Grader
+Description and Instructions field. If rich-text paste is unavailable, use
+`description.txt` as a plain-text fallback.
 
 Files Referenced: [if needed]
 ```Copy
