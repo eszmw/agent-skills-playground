@@ -27,7 +27,7 @@ Run each scenario with the local skills loaded. A ready item requires a complete
 
 **Pass criteria:**
 
-- [ ] The folder has `description.txt`, `solution.m`, `template.m`, and `assessments.md`, but no `function_call.m`.
+- [ ] The folder has `description.txt`, `description.html`, `solution.m`, `template.m`, and `assessments.md`, but no `function_call.m`.
 - [ ] `assessments.md` contains a requirement-to-assessment matrix and direct-output rows use Variable equals reference solution.
 - [ ] `assessments.md` contains **Student Template Line Locks** with valid 1-based `template.m` line numbers and matching exact template text.
 - [ ] `tests.m` is absent unless a genuinely custom MATLAB Code check is needed.
@@ -159,7 +159,7 @@ Run each scenario with the local skills loaded. A ready item requires a complete
 **Pass criteria:**
 
 - [ ] The generator resolves Korean as the content language and reports that language in the output summary.
-- [ ] `description.txt`, MATLAB comments in `solution.m`, `template.m`, and any `tests.m`, learner-visible assessment names, and optional feedback are written in Korean.
+- [ ] `description.txt`, `description.html`, MATLAB comments in `solution.m`, `template.m`, and any `tests.m`, learner-visible assessment names, and optional feedback are written in Korean.
 - [ ] MATLAB identifiers, file names, MATLAB keywords, and MATLAB Grader test type labels remain unchanged and valid.
 - [ ] With `content_language: es`, an English prompt still produces Spanish student-facing comments, assessment names, and optional feedback.
 - [ ] A legacy profile without `content_language` still defaults to auto-detection rather than failing setup.

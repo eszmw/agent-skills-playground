@@ -14,19 +14,7 @@ Compute Calculator Expressions
 ```
 
 Description and Instructions:
-```Copy
-Use MATLAB as a calculator to evaluate five mathematical expressions.
-
-Create these variables:
-
-1. `powerValues`, containing the result of 2 raised to the powers 1 through 5.
-2. `imaginaryRoot`, containing the square root of -9.
-3. `eValue`, containing e.
-4. `radianCosine`, containing the cosine of pi/2 radians.
-5. `degreeCosine`, containing the cosine of 30 degrees.
-
-Use the mathematical functions and constants appropriate to each expression.
-```
+Open [`compute_calculator_expressions/description.html`](compute_calculator_expressions/description.html) in a browser, click **Copy Description for MATLAB Grader**, and paste into the MATLAB Grader Description and Instructions field. If rich-text paste is unavailable, use `compute_calculator_expressions/description.txt` as a plain-text fallback.
 
 Type: **Script**
 
@@ -153,13 +141,7 @@ Greet a User
 ```
 
 Description and Instructions:
-```Copy
-Write a function named `greetUser` with one input and one output:
-
-greeting = greetUser(name)
-
-`name` is a string scalar. Create the string `"Hello, "` followed by `name` followed by `"!"`. Return that string in `greeting` and display the same greeting in the Command Window.
-```
+Open [`greet_user/description.html`](greet_user/description.html) in a browser, click **Copy Description for MATLAB Grader**, and paste into the MATLAB Grader Description and Instructions field. If rich-text paste is unavailable, use `greet_user/description.txt` as a plain-text fallback.
 
 Type: **Function**
 

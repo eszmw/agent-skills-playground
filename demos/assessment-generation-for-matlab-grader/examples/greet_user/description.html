@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Greet a User Description</title>
+  <style>
+    body {
+      color: #1f2933;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.45;
+      margin: 24px;
+      max-width: 760px;
+    }
+
+    button {
+      background: #0b5cab;
+      border: 0;
+      border-radius: 4px;
+      color: #ffffff;
+      cursor: pointer;
+      font: inherit;
+      margin-bottom: 16px;
+      padding: 8px 12px;
+    }
+
+    code,
+    pre {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.95em;
+    }
+
+    pre {
+      background: #f5f5f5;
+      border: 1px solid #d6d6d6;
+      border-radius: 4px;
+      padding: 12px;
+      white-space: pre-wrap;
+    }
+
+    #copy-status {
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+  <button type="button" id="copy-description">Copy Description for MATLAB Grader</button>
+  <span id="copy-status" role="status" aria-live="polite"></span>
+
+  <main id="grader-description">
+    <p>Write a function named <code>greetUser</code> with one input and one output:</p>
+    <pre><code>greeting = greetUser(name)</code></pre>
+    <p><code>name</code> is a string scalar. Create the string <code>"Hello, "</code> followed by <code>name</code> followed by <code>"!"</code>. Return that string in <code>greeting</code> and display the same greeting in the Command Window.</p>
+  </main>
+
+  <script>
+    const copyButton = document.getElementById("copy-description");
+    const copyStatus = document.getElementById("copy-status");
+    const description = document.getElementById("grader-description");
+
+    function selectDescription() {
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(description);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+
+    function removeWhitespaceTextNodes(node) {
+      if (["CODE", "PRE", "TEXTAREA"].includes(node.nodeName)) {
+        return;
+      }
+
+      for (const child of Array.from(node.childNodes)) {
+        if (child.nodeType === Node.TEXT_NODE && child.textContent.trim() === "") {
+          child.remove();
+        } else if (child.nodeType === Node.ELEMENT_NODE) {
+          removeWhitespaceTextNodes(child);
+        }
+      }
+    }
+
+    function getClipboardHtml() {
+      const clone = description.cloneNode(true);
+      removeWhitespaceTextNodes(clone);
+      return Array.from(clone.childNodes)
+        .map((node) => node.outerHTML || node.textContent)
+        .join("");
+    }
+
+    function copyHtmlWithSelection(html) {
+      const container = document.createElement("div");
+      container.innerHTML = html;
+      container.style.left = "-9999px";
+      container.style.position = "fixed";
+      container.style.top = "0";
+      document.body.appendChild(container);
+
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(container);
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      const copied = document.execCommand("copy");
+      selection.removeAllRanges();
+      container.remove();
+      return copied;
+    }
+
+    async function copyDescription() {
+      const html = getClipboardHtml();
+      const text = description.innerText;
+
+      try {
+        if (navigator.clipboard && window.ClipboardItem) {
+          const item = new ClipboardItem({
+            "text/html": new Blob([html], { type: "text/html" }),
+            "text/plain": new Blob([text], { type: "text/plain" })
+          });
+          await navigator.clipboard.write([item]);
+        } else {
+          copyHtmlWithSelection(html);
+        }
+        copyStatus.textContent = "Copied.";
+      } catch (error) {
+        if (copyHtmlWithSelection(html)) {
+          copyStatus.textContent = "Copied.";
+        } else {
+          selectDescription();
+          copyStatus.textContent = "Press Ctrl+C to copy the selected description.";
+        }
+      }
+    }
+
+    copyButton.addEventListener("click", copyDescription);
+  </script>
+</body>
+</html>

@@ -83,7 +83,7 @@ Choose the best-fit context from the input.
 [Instructor-ready prompt text.]
 
 ## Artifact Review Gates
-- `description.txt`:
+- `description.txt` and `description.html`:
 - `solution.m`:
 - `template.m`:
 - Template line locks:
@@ -125,8 +125,12 @@ portability or sharing; otherwise state "no QTI 3" in the prompt.
 
 ## Review Gate Details
 
-- `description.txt`: clear task, required names, constraints, and non-revealing
-  hints; use the configured content language for student-facing prose.
+- `description.txt` and `description.html`: clear task, required names, constraints,
+  and non-revealing hints; use the configured content language for student-facing
+  prose. `description.txt` is a plain fallback with no source markup.
+  `description.html` is the rich browser-copy source for MATLAB Grader and should
+  preserve headings, emphasis, lists, monospace text, links, code boxes, and
+  `$...$` inline LaTeX equations when pasted from rendered HTML.
 - `solution.m`: runnable, concise, aligned to the stated objective.
 - `template.m`: same names as the solution; blanks only where students should
   work; comments use the configured content language.

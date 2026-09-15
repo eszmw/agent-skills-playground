@@ -26,7 +26,8 @@ Each item has the following instructor-facing files:
 
 | File                 | MATLAB Grader use                                                        |
 | ------------------- | ------------------------------------------------------------------------ |
-| `description.txt`    | Assessment Item Description & Instructions                               |
+| `description.txt`    | Plain-text fallback for Assessment Item Description & Instructions       |
+| `description.html`   | Browser-rendered rich-text source for the Description field              |
 | `solution.m`         | Reference Solution                                                       |
 | `template.m`         | Learner Template                                                         |
 | `function_call.m`    | Code to run a Function or class-submission item                          |
@@ -35,6 +36,8 @@ Each item has the following instructor-facing files:
 | `referenced_files/`  | Optional readable referenced `.m` files and data files such as `.mat`    |
 |  `AllGraderItems.md` | Optional single markdown file presenting all elements and files in order |
 | `qti3/`              | Optional companion interchange package                                   |
+
+`description.html` is the preferred source for the MATLAB Grader Description and Instructions field. Open it in a browser, click **Copy Description for MATLAB Grader**, and paste into MATLAB Grader to preserve rich text. The plain `description.txt` file is a readable fallback and intentionally contains no Markdown, HTML, or Live Script source markup. Use `$...$` inline LaTeX for equations in rich descriptions. If `$...$` appear in Grader, delete and re-add the final `$` to force equation rendering.
 
 `assessments.md` includes **Student Template Line Locks** setup guidance followed by one row per assessment. The line-lock table identifies 1-based `template.m` line numbers that instructors should lock in the MATLAB Grader student template editor after pasting the generated template. Assessment rows identify the Grader Test Type, exact UI fields, any code to paste, expected evidence, optional feedback on incorrect submissions, and learning-objective traceability.
 
